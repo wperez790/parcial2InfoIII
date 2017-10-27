@@ -1,5 +1,7 @@
 package parcial2.infoiii.model;
 
+
+
 /**
  * Clase con los datos de un email. Puede tener mas propiedades o metodos
  */

@@ -1,3 +1,5 @@
+package parcial2.infoiii.model;
+
 public class AVLTree <T extends Comparable> {
 
     private Node<T> root;

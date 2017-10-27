@@ -48,6 +48,7 @@ public class MailManager {
      * @return lista de mails ordenados
      */
     public Email[] getSortedByFrom(){
+        
         return new Email[0];
     }
     /**

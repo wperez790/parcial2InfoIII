@@ -1,3 +1,5 @@
+package parcial2.infoiii.model;
+
 public class Node<T extends Comparable> {
 
     private int height;
