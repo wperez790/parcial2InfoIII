@@ -25,14 +25,12 @@ public class Parcial2InfoIII extends Application {
         Context.avlTreeDate = Context.initAVLTree();
         Context.avlTreeFrom = Context.initAVLTree();
         Context.hashAvlTree = Context.initHashMap();
-        
-                
     }
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String... args) {
+    public static void main(String[] args) {
         launch(args);
     }
     

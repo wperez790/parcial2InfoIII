@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="Parcial2-infoIII.jnlp">
+  <information>
+    <title>Parcial2-infoIII</title>
+    <vendor>walt</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="Parcial2-infoIII.jar" size="4915" download="eager" />
+  </resources>
+  <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Parcial2-infoIII" >
+    <param name="requiredFXVersion" value="8.0+"/>
+  </applet-desc>
+  <jfx:javafx-desc  width="800" height="600" main-class="parcial2.infoiii.Parcial2InfoIII"  name="Parcial2-infoIII" />
+  <update check="always"/>
+</jnlp>

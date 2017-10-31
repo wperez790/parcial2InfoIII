@@ -20,7 +20,7 @@ public class HashMap <K,T extends Comparable>{
         return false;
     }
 
-    public T get(K key) throws Exception {
+    /*public T get(K key) throws Exception {
         int pos = inRange(key);
         if(table[pos] == null){
             throw new Exception();
@@ -29,7 +29,7 @@ public class HashMap <K,T extends Comparable>{
             return table[pos].getDat();
         }
 
-    }
+    }*/
 
     public int hash(K key){
         return Integer.parseInt(""+key);

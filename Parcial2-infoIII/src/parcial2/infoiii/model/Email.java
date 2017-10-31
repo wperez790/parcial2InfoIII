@@ -5,7 +5,7 @@ package parcial2.infoiii.model;
 /**
  * Clase con los datos de un email. Puede tener mas propiedades o metodos
  */
-class Email {
+public class Email <T extends Comparable>{
 
     private long id;
     private String from;

@@ -16,7 +16,7 @@ import parcial2.infoiii.model.HashMap;
  *
  * @author walt
  */
-public class Context {
+public class Context<T extends Comparable> {
 
     public static Stage primaryStage;
     public static SplitPane splitPane;

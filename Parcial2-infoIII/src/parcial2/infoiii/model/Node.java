@@ -1,19 +1,19 @@
 package parcial2.infoiii.model;
 
-public class Node<T extends Comparable> {
+public class Node {
 
     private int height;
-    private T dat;
-    private Node<T> left;
-    private Node<T> right;
+    private Lista dat;
+    private Node left;
+    private Node right;
 
-    public Node(T dat){
+    public Node(Email dat) throws Exception{
         this.height = 0;
-        this.dat = dat;
+        this.dat.insertar(dat);
         this.left = null;
         this.right = null;
     }
-    public Node(Node<T> node){
+    public Node(Node node){
         this.height = 0;
         this.dat = node.getDat();
         this.left = node.getLeft();
@@ -28,11 +28,11 @@ public class Node<T extends Comparable> {
         this.height = height;
     }
 
-    public T getDat() {
+    public Lista getDat() {
         return dat;
     }
 
-    public void setDat(T dat) {
+    public void setDat(Lista dat) {
         this.dat = dat;
     }
 
@@ -52,14 +52,14 @@ public class Node<T extends Comparable> {
         this.right = right;
     }
 
-    public int balance(Node<T> aux){
+    public int balance(Node aux){
         if(aux != null){
             return (height(aux.right) - height(aux.left));
         }
         return 0;
     }
 
-    public int height(Node<T> aux){
+    public int height(Node aux){
 
         if(aux == null){
             return -1;
@@ -69,9 +69,9 @@ public class Node<T extends Comparable> {
         }
     }
 
-    public Node<T> rightRotate(Node<T> k2){
+    public Node rightRotate(Node k2){
 
-        Node<T> k1 = new Node<T>(k2.left);
+        Node k1 = new Node(k2.left);
         k2.left = k1.right;
         k1.right = k2;
 
@@ -81,9 +81,9 @@ public class Node<T extends Comparable> {
         return k1;
     }
 
-    public Node<T> leftRotate(Node<T> k2){
+    public Node leftRotate(Node k2){
 
-        Node<T> k1 = new Node<T>(k2.right);
+        Node k1 = new Node(k2.right);
         k2.right = k1.left;
         k1.left = k2;
 
@@ -93,17 +93,17 @@ public class Node<T extends Comparable> {
         return k1;
     }
 
-    public Node<T> insert (Node<T> aux, T dat){
+    public Node insertByFrom (Node aux, Email dat) throws Exception{
 
         if(aux == null){
-            return new Node<T>(dat);
+            return new Node(dat);
         }
 
-        if(aux.dat.compareTo(dat) > 0){
-            aux.left = insert(aux.left,dat);
+        if(aux.dat.getInicio().getDato().getFrom().compareTo(dat.getFrom()) > 0){
+            aux.left = insertByFrom(aux.left,dat);
         }
         else{
-            aux.right = insert(aux.right,dat);
+            aux.right = insertByFrom(aux.right,dat);
         }
 
         aux.height = height(aux);
@@ -138,7 +138,51 @@ public class Node<T extends Comparable> {
 
         return aux; //Sin replicados
     }
+     public Node insertByDate (Node aux, Email dat) throws Exception{
 
+        if(aux == null){
+            return new Node(dat);
+        }
+
+        if(aux.dat.getInicio().getDato().getFrom().compareTo(dat.getFrom()) > 0){
+            aux.left = insertByFrom(aux.left,dat);
+        }
+        else{
+            aux.right = insertByFrom(aux.right,dat);
+        }
+
+        aux.height = height(aux);
+
+        int balance = balance(aux);
+
+        //Rotación simple izquierda (RSI)
+
+        if(balance > 1 && balance(aux.right) > 0){
+            return leftRotate(aux);
+        }
+
+        //Rotación simple derecha (RSD)
+
+        if(balance < -1 && balance(aux.left) < 0){
+            return rightRotate(aux);
+        }
+
+        //Rotación doble izquierda (RDI)
+
+        if(balance < -1 && balance(aux.left) > 0 ){
+            aux.left = leftRotate(aux.left);
+            return rightRotate(aux);
+        }
+
+        //Rotación doble derecha (RDD)
+
+        if(balance > 1 && balance(aux.left) < 0 ){
+            aux.right = rightRotate(aux.right);
+            return leftRotate(aux);
+        }
+
+        return aux; //Sin replicados
+    }
     public void inOrder(){
 
         if(left != null){
