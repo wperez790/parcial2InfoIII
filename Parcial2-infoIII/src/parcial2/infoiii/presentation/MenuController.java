@@ -77,6 +77,15 @@ public class MenuController implements Initializable {
 
     @FXML
     private void btnOrdenarAction(ActionEvent event) {
+        
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/PanelOrdenar.fxml"));
+            Context.splitPane.getItems().set(0, root);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
 
 
