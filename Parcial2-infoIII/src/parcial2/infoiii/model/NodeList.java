@@ -3,12 +3,12 @@ package parcial2.infoiii.model;
 /**
  * Created by Ramiro on 17/8/2017.
  */
-public class Nodo {
+public class NodeList {
 
     private Email dato;
-    private Nodo next;
+    private NodeList next;
 
-    public Nodo( Email dato, Nodo next){
+    public NodeList( Email dato, NodeList next){
 
         this.dato = dato;
         this.next = next;
@@ -22,11 +22,11 @@ public class Nodo {
         this.dato = dato;
     }
 
-    public Nodo getNext() {
+    public NodeList getNext() {
         return next;
     }
 
-    public void setNext(Nodo next) {
+    public void setNext(NodeList next) {
         this.next = next;
     }
 

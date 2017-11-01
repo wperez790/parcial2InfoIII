@@ -10,11 +10,11 @@ public class HashMap <K,T extends Comparable>{
         table = new AVLTree[size];
     }
 
-    public boolean put(K key,T dat) {
+    public boolean put(K key,Email m) throws Exception {
         int pos = inRange(key);
         if (table[pos] == null){
             table[pos] = new AVLTree<>();
-            table[pos].insert(dat);
+            table[pos].insertBySubject(m);
             return true;
         }
         return false;

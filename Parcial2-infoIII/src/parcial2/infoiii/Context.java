@@ -29,7 +29,7 @@ public class Context<T extends Comparable> {
     }
     
     public static HashMap initHashMap(){
-        return new HashMap(10);
+        return new HashMap(17498);
     }
 
     static void abrirMenu() {

@@ -14,6 +14,7 @@ public class MailManager{
         
         Context.avlTreeFrom.insertByFrom(m);
         Context.avlTreeDate.insertByDate(m);
+        Context.hashAvlTree.put(m.getSubject(),m);
 
     }
 
@@ -31,8 +32,8 @@ public class MailManager{
      *
      * @return lista de mails ordenados
      */
-    public Email[] getSortedByDate(){
-        return new Email[0];
+    public void getSortedByDate(){
+        Context.avlTreeDate.getSorted();
     }
 
     /**
@@ -43,8 +44,8 @@ public class MailManager{
      * @param hasta Fecha hasta donde buscar
      * @return lista de mails ordenados
      */
-    public Email[] getSortedByDate(Date desde, Date hasta){
-        return new Email[0];
+    public void getSortedByDate(String desde, String hasta){
+        Context.avlTreeDate.getSortedByDate(desde,hasta);
     }
 
     /**
@@ -52,9 +53,8 @@ public class MailManager{
      *
      * @return lista de mails ordenados
      */
-    public Email[] getSortedByFrom(){
-        
-        return new Email[0];
+    public void getSortedByFrom(){
+        Context.avlTreeFrom.getSorted();
     }
     /**
      * Devuelve una lista de mails de un determinado remitente

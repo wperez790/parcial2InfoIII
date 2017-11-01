@@ -5,14 +5,14 @@ package parcial2.infoiii.model;
  */
 public class Lista<T> {
 
-    private Nodo inicio;
+    private NodeList inicio;
     private int tamanio;
 
-    public Nodo getInicio() {
+    public NodeList getInicio() {
         return inicio;
     }
 
-    public void setInicio(Nodo inicio) {
+    public void setInicio(NodeList inicio) {
         this.inicio = inicio;
     }
 
@@ -26,10 +26,10 @@ public class Lista<T> {
 
     public void insertar(Email dato) throws Exception {
 
-        Nodo aux = inicio;
+        NodeList aux = inicio;
 
         if (inicio == null) {
-            Nodo nuevo = new Nodo((Email) dato, inicio);
+            NodeList nuevo = new NodeList((Email) dato, inicio);
             tamanio++;
             inicio = nuevo;
             return;
@@ -40,14 +40,14 @@ public class Lista<T> {
             aux = aux.getNext();
         }
 
-        Nodo nuevo = new Nodo((Email) dato, aux.getNext());
+        NodeList nuevo = new NodeList((Email) dato, aux.getNext());
         aux.setNext(nuevo);
         tamanio++;
     }
 
     public Email getDato(int pos) throws Exception {
 
-        Nodo aux = inicio;
+        NodeList aux = inicio;
         int cont = 0;
 
         if (pos >= tamanio) {
@@ -67,7 +67,7 @@ public class Lista<T> {
 
     public void borrar(int pos) throws Exception {
 
-        Nodo aux = inicio;
+        NodeList aux = inicio;
 
         int cont = 0;
 
@@ -93,7 +93,7 @@ public class Lista<T> {
 
     public Lista concatenar(Lista lista1, Lista lista2) {
 
-        Nodo aux = lista1.getInicio();
+        NodeList aux = lista1.getInicio();
         int cont = 0;
 
         while (aux.getNext() != null) {
@@ -106,7 +106,7 @@ public class Lista<T> {
     }
 
     public void mostrarLista(Lista lista) {
-        Nodo aux = lista.getInicio();
+        NodeList aux = lista.getInicio();
         while (aux != null) {
             System.out.print(aux.getDato() + "\t");
             aux = aux.getNext();
@@ -118,8 +118,8 @@ public class Lista<T> {
 
         int i = 0, tamanio, cont = 0;
         tamanio = lista.getTamanio();
-        Nodo aux1 = lista.getInicio();
-        Nodo aux2 = lista.getInicio();
+        NodeList aux1 = lista.getInicio();
+        NodeList aux2 = lista.getInicio();
 
         do {
             while (i < tamanio - 1) {
@@ -141,7 +141,7 @@ public class Lista<T> {
 
     public Lista merger(Lista lista1, Lista lista2) {
 
-        Nodo aux = lista1.getInicio();
+        NodeList aux = lista1.getInicio();
 
         while (aux.getNext() != null) {
             aux = aux.getNext();
