@@ -5,8 +5,10 @@
  */
 package parcial2.infoiii.presentation;
 
+import com.jfoenix.controls.JFXButton;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 /**
@@ -15,6 +17,9 @@ import javafx.fxml.Initializable;
  * @author walt
  */
 public class PanelAgregarController implements Initializable {
+
+    @FXML
+    private JFXButton btnAgregar;
 
     /**
      * Initializes the controller class.

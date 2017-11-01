@@ -2,18 +2,26 @@ package parcial2.infoiii.model;
 
 public class AVLTree <T extends Comparable> {
 
-    private Node<T> root;
+    private Node root;
 
     public AVLTree(){
         this.root = null;
     }
 
-    public void insert(T dat){
+    public void insertByDate(Email dat) throws Exception{
         if(root == null){
-            root = new Node<T>(dat);
+            root = new Node(dat);
         }
         else{
-            root = root.insert(root,dat);
+            root = root.insertByDate(root,dat);
+        }
+    }
+    public void insertByFrom(Email dat) throws Exception{
+        if(root == null){
+            root = new Node(dat);
+        }
+        else{
+            root = root.insertByFrom(root,dat);
         }
     }
 

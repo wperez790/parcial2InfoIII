@@ -15,8 +15,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.control.SplitPane;
-import javafx.scene.layout.AnchorPane;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.business.MailManager;
 import parcial2.infoiii.model.Email;
@@ -26,12 +24,8 @@ import parcial2.infoiii.model.Email;
  *
  * @author walt
  */
-public class PanelBuscarController implements Initializable {
+public class PanelOrdenarController implements Initializable {
 
-    @FXML
-    private SplitPane splitPaneBuscar;
-    @FXML
-    private JFXTextField textFieldPalabra;
     @FXML
     private JFXDatePicker datePickerDesde;
     @FXML
@@ -42,23 +36,44 @@ public class PanelBuscarController implements Initializable {
     private JFXTextField textFieldRemitente;
     @FXML
     private JFXButton btnBuscar;
-    @FXML
-    private AnchorPane anchorPaneElementos;
+    //AUXILIARES
+    MailManager mailManagerBO;
     @FXML
     private JFXButton btnVer;
     @FXML
     private JFXButton btnBack;
-   
-    //AUXILIARES
-    MailManager mailManagerBO;
     //
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+        // TODO
     }    
+
+    @FXML
+    private void btnBuscarAction(ActionEvent event) {
+        Email[] e1;
+        Email[] e2;
+        Email[] e3;
+        if(!textFieldRemitente.getText().isEmpty())
+            e1= mailManagerBO.getSortedByFrom();
+        /*Si Desde y Hasta estan completados*/
+        if(datePickerDesde.getEditor().getText() !=null && datePickerHasta.getEditor().getText()!=null)
+            e2 = mailManagerBO.getSortedByDate(desde, hasta);
+        /*Si solo Desde esta completado*/
+        if(datePickerDesde.getEditor().getText() !=null && datePickerHasta.getEditor().getText()==null)
+            e3 = mailManagerBO.getSortedByDate(desde, hasta);
+        /**/
+        /*Si solo Hasta esta completado*/
+        if(datePickerDesde.getEditor().getText() ==null && datePickerHasta.getEditor().getText()!=null)
+            e3 = mailManagerBO.getSortedByDate(desde, hasta);
+        /**/
+        /*Si Fecha en particular esta completado*/
+        if(datePickerFecha.getEditor().getText() !=null)
+            e2 = mailManagerBO.getSortedByDate(fecha);
+        /**/
+    }
 
     @FXML
     private void btnVerAction(ActionEvent event) {
@@ -76,19 +91,5 @@ public class PanelBuscarController implements Initializable {
 
         }
     }
-
-    @FXML
-    private void btnBuscarAction(ActionEvent event) {
-        Email[] e1;
-        Email[] e2;
-        if(!textFieldRemitente.getText().isEmpty())
-            e1= mailManagerBO.getByFrom(textFieldRemitente.getText());
-        if(!textFieldPalabra.getText().isEmpty())
-            e2 = mailManagerBO.getByQuery(textFieldPalabra.getText());
-       
-        
-    }
-
-  
     
 }

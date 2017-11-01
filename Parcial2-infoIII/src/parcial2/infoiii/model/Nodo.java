@@ -3,7 +3,7 @@ package parcial2.infoiii.model;
 /**
  * Created by Ramiro on 17/8/2017.
  */
-public class Nodo<Email> {
+public class Nodo {
 
     private Email dato;
     private Nodo next;

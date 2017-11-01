@@ -4,16 +4,16 @@ import java.util.Date;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.model.Email;
 
-public class MailManager <T extends Comparable>{
+public class MailManager{
     /**
      * Agrega un mail al gestor
      *
      * @param m mail a agregar
      */
-    public void addMail(Email m){
+    public void addMail(Email m) throws Exception{
         
-        Context.avlTreeFrom.insert((Comparable) m);
-        Context.avlTreeDate.insert(m);
+        Context.avlTreeFrom.insertByFrom(m);
+        Context.avlTreeDate.insertByDate(m);
 
     }
 
