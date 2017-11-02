@@ -3,6 +3,7 @@ package parcial2.infoiii.business;
 import java.util.Date;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.model.Email;
+import parcial2.infoiii.model.Lista;
 
 public class MailManager{
     /**
@@ -15,7 +16,6 @@ public class MailManager{
         Context.avlTreeFrom.insertByFrom(m);
         Context.avlTreeDate.insertByDate(m);
         Context.hashAvlTree.put(m.getSubject(),m);
-
     }
 
     /**
@@ -62,8 +62,8 @@ public class MailManager{
      * @param from String con direccion del remitente
      * @return lista de mails del remitente
      */
-    public Email[] getByFrom(String from){
-        return new Email[0];
+    public void getByFrom(String from){
+        Context.avlTreeFrom.getByFrom(from);
     }
     /**
      * Devuelve una lista de mails que contengan las palabras de 'query'

@@ -234,13 +234,16 @@ public class NodeTree {
     }
     
     public void getSortedByDate(String desde, String hasta){
+        
+        //Hubico la fecha inicial (desde)
+        
         if(left != null && left.getDat().getInicio().getDato().getDate().compareTo(desde) > 0){
             left.getSortedByDate(desde, hasta);
         }
         if(right != null && left.getDat().getInicio().getDato().getDate().compareTo(desde) < 0){
             right.getSortedByDate(desde, hasta);
         }
-        this.getSortedByDateTo(hasta);
+        this.getSortedByDateTo(hasta); //Muestro las listas hasta la fecha final (hasta)
     }
     
     public void getSortedByDateTo(String hasta){
@@ -248,10 +251,23 @@ public class NodeTree {
         if (left != null || left.getDat().getInicio().getDato().getDate().compareTo(hasta) == 0) {
             left.getSortedByDateTo(hasta);
         }
-        dat.mostrarLista(dat);
+        dat.mostrarLista(dat);          //Muestro las listas desde-hasta
         if (right != null || right.getDat().getInicio().getDato().getDate().compareTo(hasta) == 0) {
             right.getSortedByDateTo(hasta);
         }
+    }
+    
+    public void getByFrom(String from){
+        
+        //Hubico la lista con los emails de remitente deseado
+        
+        if(left != null && left.getDat().getInicio().getDato().getDate().compareTo(from) > 0){
+            left.getByFrom(from);
+        }
+        if(right != null && left.getDat().getInicio().getDato().getDate().compareTo(from) < 0){
+            right.getByFrom(from);
+        }
+        this.getDat().mostrarLista(dat);    //Muestro la lista con los emails del remitente deseado
     }
 
     /*public void inOrder() {
