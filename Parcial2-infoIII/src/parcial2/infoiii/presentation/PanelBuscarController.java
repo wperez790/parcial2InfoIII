@@ -78,7 +78,7 @@ public class PanelBuscarController implements Initializable {
     }
 
     @FXML
-    private void btnBuscarAction(ActionEvent event) {
+    private void btnBuscarAction(ActionEvent event) throws Exception {
         Email[] e1;
         Email[] e2;
         if(!textFieldRemitente.getText().isEmpty())

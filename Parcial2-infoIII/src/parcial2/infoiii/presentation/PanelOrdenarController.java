@@ -56,22 +56,25 @@ public class PanelOrdenarController implements Initializable {
         Email[] e1;
         Email[] e2;
         Email[] e3;
+        String desde= datePickerDesde.getEditor().getText();
+        String hasta = datePickerHasta.getEditor().getText();
+        String fecha= datePickerFecha.getEditor().getText();
         if(!textFieldRemitente.getText().isEmpty())
             e1= mailManagerBO.getSortedByFrom();
         /*Si Desde y Hasta estan completados*/
-        if(datePickerDesde.getEditor().getText() !=null && datePickerHasta.getEditor().getText()!=null)
-            e2 = mailManagerBO.getSortedByDate(desde, hasta);
+        if( desde !=null && hasta!=null)
+            e2 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
         /*Si solo Desde esta completado*/
-        if(datePickerDesde.getEditor().getText() !=null && datePickerHasta.getEditor().getText()==null)
-            e3 = mailManagerBO.getSortedByDate(desde, hasta);
+        if(desde!=null && hasta==null)
+            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
         /**/
         /*Si solo Hasta esta completado*/
-        if(datePickerDesde.getEditor().getText() ==null && datePickerHasta.getEditor().getText()!=null)
-            e3 = mailManagerBO.getSortedByDate(desde, hasta);
+        if(desde==null && hasta!=null)
+            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
         /**/
         /*Si Fecha en particular esta completado*/
         if(datePickerFecha.getEditor().getText() !=null)
-            e2 = mailManagerBO.getSortedByDate(fecha);
+            e2 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(fecha),mailManagerBO.splitDate(fecha));
         /**/
     }
 

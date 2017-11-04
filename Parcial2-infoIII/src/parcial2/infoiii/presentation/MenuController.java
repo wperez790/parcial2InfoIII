@@ -13,7 +13,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
 import parcial2.infoiii.Context;
 
 /**
@@ -44,8 +46,9 @@ public class MenuController implements Initializable {
     public void init() {
 
         try {
-
+     
             Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/Menu.fxml"));
+          
             Context.splitPane.getItems().set(0, root);
         } catch (Exception e) {
             e.printStackTrace();
@@ -56,6 +59,14 @@ public class MenuController implements Initializable {
 
     @FXML
     private void btnAgregarAction(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/PanelAgregar.fxml"));
+            Context.splitPane.getItems().set(0, root);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
         
     }
 

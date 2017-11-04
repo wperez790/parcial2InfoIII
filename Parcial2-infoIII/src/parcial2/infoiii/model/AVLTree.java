@@ -25,40 +25,56 @@ public class AVLTree <T extends Comparable> {
         }
     }
     
-    public void insertBySubject(Email m) throws Exception{
+    public void insertByWord(ContenedorMail cm) throws Exception{
         if(root == null){
-            root = new NodeTree(m);
+            root = new NodeTree(cm);
         }
         else{
-            root = root.insertByFrom(root,m);
+            root = root.insertByWord(root,cm);
         }
     }
     
-    public void getSorted(){
+    public Lista getSorted(Lista list){
         if(root != null){
-            root.getSorted();
+            root.getSorted(list);
+            return list;
         }
         else{
             System.out.println("Árbol vacío");
+            return null;
         }
     }
     
-    public void getSortedByDate(String desde, String hasta){
+    public Lista getSortedByDate(String desde, String hasta, Lista list){
         if(root != null && root.getDat().getInicio().getDato().getDate().compareTo(desde) != 0){
-            root.getSortedByDate(desde,hasta);
+            root.getSortedByDate(desde,hasta,list);
+            return list;
         }
         else if (root != null){
-            root.getSortedByDateTo(hasta);
+            root.getSortedByDateTo(hasta,list);
+            return list;
         }
         else{
             System.out.println("Árbol vacío");
+            return null;
         }
     }
     
-    public void getByFrom(String from){
+    public Lista getByFrom(String from, Lista list){
         if(root != null){
-            root.getByFrom(from);
+            list = root.getByFrom(from,list);
+            return list;
         }
+        else{
+            System.out.println("Árbol vacío");
+            return null;
+        }
+    }
+    
+    public Lista getByQuery(String[] query) throws Exception{
+
+        return root.getByQuery(query);
+        
     }
 
     /*public void inOrder (){

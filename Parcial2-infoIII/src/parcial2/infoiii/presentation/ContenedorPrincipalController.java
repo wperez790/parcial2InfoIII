@@ -33,6 +33,7 @@ public class ContenedorPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Context.splitPane = splitPane;
+    
     }
 
     public void init() {
@@ -41,7 +42,7 @@ public class ContenedorPrincipalController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/ContenedorPrincipal.fxml"));
             Scene scene = new Scene(root);
             Context.primaryStage.setScene(scene);
-            primaryStage.setTitle("Parcial 2 - Info III - Azcona-Perez ");
+            Context.primaryStage.setTitle("Parcial 2 - Info III - Azcona-Perez ");
             Context.primaryStage.show();
         } catch (Exception e) {
             e.printStackTrace();

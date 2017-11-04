@@ -12,6 +12,7 @@ import parcial2.infoiii.presentation.ContenedorPrincipalController;
 import parcial2.infoiii.presentation.MenuController;
 import parcial2.infoiii.model.AVLTree;
 import parcial2.infoiii.model.HashMap;
+import parcial2.infoiii.model.Lista;
 /**
  *
  * @author walt
@@ -23,6 +24,8 @@ public class Context<T extends Comparable> {
     public static AVLTree avlTreeFrom;
     public static AVLTree avlTreeDate;
     public static HashMap hashAvlTree;
+    public static Lista list;
+    public static String op;
     
     public static AVLTree initAVLTree(){
         return new AVLTree();
@@ -32,13 +35,12 @@ public class Context<T extends Comparable> {
         return new HashMap(17498);
     }
 
-    static void abrirMenu() {
-        Context.abrirContenedorPrincipal();
+    public static void abrirMenu() {
         MenuController menu = new MenuController();
         menu.init();
     }
 
-    private static void abrirContenedorPrincipal() {
+    static void abrirContenedorPrincipal() {
 
         ContenedorPrincipalController contenedor = new ContenedorPrincipalController();
         contenedor.init();

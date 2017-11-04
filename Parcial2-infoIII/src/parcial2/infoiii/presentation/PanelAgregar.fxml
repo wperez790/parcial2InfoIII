@@ -1,11 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="parcial2.infoiii.presentation.PanelAgregarController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parcial2.infoiii.presentation.PanelAgregarController">
    <children>
-      <JFXButton fx:id="btnAgregar" layoutX="184.0" layoutY="174.0" />
+      <GridPane layoutX="188.0" layoutY="155.0" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Label text="Agregar Mails" underline="true" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Garuda" size="19.0" />
+               </font>
+            </Label>
+            <JFXButton fx:id="btn2" buttonType="RAISED" onAction="#btn2Action" ripplerFill="BLACK" text="2 Mails">
+               <font>
+                  <Font name="Garuda" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn201" buttonType="RAISED" onAction="#btn20Action" ripplerFill="BLACK" text="20 Mails" GridPane.columnIndex="1">
+               <font>
+                  <Font name="Garuda" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn100" buttonType="RAISED" onAction="#btn100Action" ripplerFill="BLACK" text="100 Mails" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Garuda" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn1000" buttonType="RAISED" onAction="#btn1000Action" ripplerFill="BLACK" text="1000 Mails" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Garuda" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+            <JFXButton fx:id="btn3001" buttonType="RAISED" onAction="#btn3001Action" ripplerFill="BLACK" text="3001 Mails" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Garuda" size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </JFXButton>
+         </children>
+      </GridPane>
    </children>
 </AnchorPane>

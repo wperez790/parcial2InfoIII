@@ -6,7 +6,16 @@ package parcial2.infoiii.model;
 public class Lista<T> {
 
     private NodeList inicio;
+    private NodeListPos inicioLP;
     private int tamanio;
+
+    public NodeListPos getInicioLP() {
+        return inicioLP;
+    }
+
+    public void setInicioLP(NodeListPos inicioLP) {
+        this.inicioLP = inicioLP;
+    }
 
     public NodeList getInicio() {
         return inicio;
@@ -24,7 +33,7 @@ public class Lista<T> {
         this.tamanio = tamanio;
     }
 
-    public void insertar(Email dato) throws Exception {
+    public void insertar(T dato) throws Exception {
 
         NodeList aux = inicio;
 
@@ -43,6 +52,27 @@ public class Lista<T> {
         NodeList nuevo = new NodeList((Email) dato, aux.getNext());
         aux.setNext(nuevo);
         tamanio++;
+    }
+    void insertarContenedor(ContenedorMail dat) {
+        NodeListPos aux = inicioLP;
+
+        if (inicioLP== null) {
+            NodeListPos nuevo = new NodeListPos( dat, inicioLP);
+            tamanio++;
+            inicioLP = nuevo;
+            return;
+        }
+
+        while (aux != null) {
+
+            aux = aux.getNext();
+        }
+
+        NodeListPos nuevo = new NodeListPos( dat, aux.getNext());
+        aux.setNext(nuevo);
+        tamanio++;
+    
+        
     }
 
     public Email getDato(int pos) throws Exception {
@@ -92,17 +122,21 @@ public class Lista<T> {
     }
 
     public Lista concatenar(Lista lista1, Lista lista2) {
-
-        NodeList aux = lista1.getInicio();
-        int cont = 0;
-
-        while (aux.getNext() != null) {
-            aux = aux.getNext();
+        
+        if(lista1 == null){
+            lista1 = lista2;
+            lista1.setTamanio(lista2.getTamanio());
+            return lista1;
         }
-
-        aux.setNext(lista2.getInicio());
-
-        return lista1;
+        else{
+           NodeList aux = lista1.getInicio();
+           while (aux.getNext() != null) {
+                aux = aux.getNext();
+            }
+            aux.setNext(lista2.getInicio());
+            lista1.setTamanio(lista1.getTamanio() + lista2.getTamanio());
+            return lista1;  
+        }       
     }
 
     public void mostrarLista(Lista lista) {
@@ -151,4 +185,6 @@ public class Lista<T> {
 
         return lista1;
     }
+
+    
 }

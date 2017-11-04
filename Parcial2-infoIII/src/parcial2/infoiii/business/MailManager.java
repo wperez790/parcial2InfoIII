@@ -4,6 +4,7 @@ import java.util.Date;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.model.Email;
 import parcial2.infoiii.model.Lista;
+import parcial2.infoiii.model.NodeList;
 
 public class MailManager{
     /**
@@ -15,7 +16,9 @@ public class MailManager{
         
         Context.avlTreeFrom.insertByFrom(m);
         Context.avlTreeDate.insertByDate(m);
-        Context.hashAvlTree.put(m.getSubject(),m);
+        Context.hashAvlTree.splitString(m.getSubject(),m,true);
+        Context.hashAvlTree.splitString(m.getContent(),m,false);
+        
     }
 
     /**
@@ -32,8 +35,18 @@ public class MailManager{
      *
      * @return lista de mails ordenados
      */
-    public void getSortedByDate(){
-        Context.avlTreeDate.getSorted();
+    public Email[] getSortedByDate(){
+                
+        Context.avlTreeDate.getSorted(Context.list);
+        Email email[] = new Email[Context.list.getTamanio()];
+        NodeList aux = Context.list.getInicio();
+        int i = 0;
+        while (aux.getNext() != null) {
+            email[i] = aux.getDato();
+            aux = aux.getNext();
+            i++;
+        }         
+        return email;
     }
 
     /**
@@ -44,8 +57,18 @@ public class MailManager{
      * @param hasta Fecha hasta donde buscar
      * @return lista de mails ordenados
      */
-    public void getSortedByDate(String desde, String hasta){
-        Context.avlTreeDate.getSortedByDate(desde,hasta);
+    public Email[] getSortedByDate(String desde, String hasta){
+        
+        Context.avlTreeDate.getSortedByDate(desde,hasta,Context.list);
+        Email email[] = new Email[Context.list.getTamanio()];
+        NodeList aux = Context.list.getInicio();
+        int i = 0;
+        while (aux.getNext() != null) {
+            email[i] = aux.getDato();
+            aux = aux.getNext();
+            i++;
+        }         
+        return email;
     }
 
     /**
@@ -53,8 +76,18 @@ public class MailManager{
      *
      * @return lista de mails ordenados
      */
-    public void getSortedByFrom(){
-        Context.avlTreeFrom.getSorted();
+    public Email[] getSortedByFrom(){
+        
+        Context.avlTreeFrom.getSorted(Context.list);
+        Email email[] = new Email[Context.list.getTamanio()];
+        NodeList aux = Context.list.getInicio();
+        int i = 0;
+        while (aux.getNext() != null) {
+            email[i] = aux.getDato();
+            aux = aux.getNext();
+            i++;
+        }         
+        return email;
     }
     /**
      * Devuelve una lista de mails de un determinado remitente
@@ -62,8 +95,18 @@ public class MailManager{
      * @param from String con direccion del remitente
      * @return lista de mails del remitente
      */
-    public void getByFrom(String from){
-        Context.avlTreeFrom.getByFrom(from);
+    public Email[] getByFrom(String from){
+                
+        Context.avlTreeFrom.getByFrom(from,Context.list);        
+        Email email[] = new Email[Context.list.getTamanio()];
+        NodeList aux = Context.list.getInicio();
+        int i = 0;
+        while (aux.getNext() != null) {
+            email[i] = aux.getDato();
+            aux = aux.getNext();
+            i++;
+        }         
+        return email;
     }
     /**
      * Devuelve una lista de mails que contengan las palabras de 'query'
@@ -72,7 +115,25 @@ public class MailManager{
      * @param query String con palabra/s a buscar
      * @return lista de mails que contienen dicha/s palabra/s
      */
-    public Email[] getByQuery(String query){
-        return new Email[0];
+    public Email[] getByQuery(String query) throws Exception{
+        
+        Context.list = Context.hashAvlTree.getByQuery(query);
+        Email email[] = new Email[Context.list.getTamanio()];
+        NodeList aux = Context.list.getInicio();
+        int i = 0;
+        while (aux.getNext() != null) {
+            email[i] = aux.getDato();
+            aux = aux.getNext();
+            i++;
+        }         
+        return email;
     }
+     public String splitDate(String notSplited){
+         String[] splited = notSplited.split("/");
+         String aux = null;
+         for(int i = splited.length-1; i<=0 ; i--)
+             aux+=splited[i]+"-";
+         aux+=" 00:00:00";
+         return aux;
+     }
 }
