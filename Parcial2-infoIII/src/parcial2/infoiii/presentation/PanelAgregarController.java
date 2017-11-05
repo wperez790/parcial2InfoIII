@@ -10,7 +10,9 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.business.MailManager;
 import parcial2.infoiii.business.MailManagerTest;
@@ -34,6 +36,8 @@ public class PanelAgregarController implements Initializable {
     private JFXButton btn3001;
     //AUX
     MailManagerTest mmt = new MailManagerTest();
+    @FXML
+    private JFXButton btnBack;
     
     /**
      * Initializes the controller class.
@@ -75,6 +79,18 @@ public class PanelAgregarController implements Initializable {
     private void btn3001Action(ActionEvent event) throws Exception {
         Context.op = "mails-3001.txt";
         mmt.addMail();
+    }
+
+    @FXML
+    private void btnBackAction(ActionEvent event) {
+        try {
+
+            Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/Menu.fxml"));
+            Context.splitPane.getItems().set(0, root);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
     }
     
 }

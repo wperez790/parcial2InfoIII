@@ -46,9 +46,7 @@ public class MenuController implements Initializable {
     public void init() {
 
         try {
-     
             Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/Menu.fxml"));
-          
             Context.splitPane.getItems().set(0, root);
         } catch (Exception e) {
             e.printStackTrace();
