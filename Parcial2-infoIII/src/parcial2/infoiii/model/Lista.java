@@ -33,42 +33,43 @@ public class Lista<T> {
         this.tamanio = tamanio;
     }
 
-    public void insertar(T dato) throws Exception {
+    public void insertar(Email dat) throws Exception {
 
         NodeList aux = inicio;
 
         if (inicio == null) {
-            NodeList nuevo = new NodeList((Email) dato, inicio);
-            tamanio++;
+            NodeList nuevo = new NodeList(dat, null);
+            tamanio = 0;
             inicio = nuevo;
             return;
         }
 
-        while (aux != null) {
+        while (aux.getNext() != null) {
 
             aux = aux.getNext();
         }
 
-        NodeList nuevo = new NodeList((Email) dato, aux.getNext());
+        NodeList nuevo = new NodeList(dat, aux.getNext());
         aux.setNext(nuevo);
         tamanio++;
     }
     void insertarContenedor(ContenedorMail dat) {
+        
         NodeListPos aux = inicioLP;
 
         if (inicioLP== null) {
-            NodeListPos nuevo = new NodeListPos( dat, inicioLP);
-            tamanio++;
+            NodeListPos nuevo = new NodeListPos( dat, null);
+            tamanio = 0;
             inicioLP = nuevo;
             return;
         }
 
-        while (aux != null) {
+        while (aux.getNext() != null) {
 
             aux = aux.getNext();
         }
 
-        NodeListPos nuevo = new NodeListPos( dat, aux.getNext());
+        NodeListPos nuevo = new NodeListPos(dat, aux.getNext());
         aux.setNext(nuevo);
         tamanio++;
     
