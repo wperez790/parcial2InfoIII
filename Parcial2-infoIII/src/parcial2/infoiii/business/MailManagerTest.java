@@ -8,21 +8,19 @@ import parcial2.infoiii.Context;
 import parcial2.infoiii.model.Email;
 
 public class MailManagerTest {
-    private MailManager mm;
+    private MailManager mm = new MailManager();
 
     
     public void setUp() {
         mm = new MailManager();
-    }    
+    }   
    public void addMail() throws Exception {
         ArrayList<Email> mails = loadMails();
         for (Email m : mails) {
             mm.addMail(m);
         }        
     }
-
-
-    ArrayList<Email> loadMails() {
+    public ArrayList<Email> loadMails() {
         String aux = null;
         String line = null;
         String[] campos = null;
@@ -31,7 +29,7 @@ public class MailManagerTest {
         String direccion = Context.op;
 
         try {
-            FileReader in = new FileReader("/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/"+direccion);
+            FileReader in = new FileReader("/home/ramiro/Documentos/Enlace hacia Facultad/Informatica III/NetBeans/Parcial2-infoIII/"+direccion);
             BufferedReader buf = new BufferedReader(in);
 
             while ((line = buf.readLine()) != null) {

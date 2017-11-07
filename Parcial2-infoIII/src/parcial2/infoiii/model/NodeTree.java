@@ -197,7 +197,7 @@ public class NodeTree {
         } else if (aux.dat.getInicioLP().getDato().getKey().compareTo(cm.getKey()) < 0) {
             aux.right = insertByWord(aux.right, cm);
         } else {
-            this.dat.insertar(cm);
+            this.dat.insertarContenedor(cm);
         }
 
         aux.height = height(aux);

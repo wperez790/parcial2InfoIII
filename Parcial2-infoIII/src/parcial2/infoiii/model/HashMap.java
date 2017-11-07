@@ -25,6 +25,9 @@ public class HashMap <K,T extends Comparable>{
             table[pos].insertByWord(cm);
             return true;
         }
+        else{
+            table[pos].insertByWord(cm);
+        }
         
         return false;
     }
