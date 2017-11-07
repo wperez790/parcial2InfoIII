@@ -271,18 +271,22 @@ public class NodeTree {
         }
     }
 
-    public void getByFrom(String from) {
-
+    public Lista getByFrom(String from) {
+        NodeTree aux = this;
         //Ubico la lista con los emails del remitente deseado
-        if (left != null && dat.getInicio().getDato().getFrom().compareTo(from) > 0) {
-            left.getByFrom(from);
-        }  if (right != null && dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
-            right.getByFrom(from);
-        } 
-        if (dat.getInicio().getDato().getFrom().compareTo(from) == 0){
-            Context.list= dat;   //Devuelvo la lista con los emails del remitente deseado
+        while (aux.dat.getInicio().getDato().getFrom().compareTo(from) != 0) {
+            if (left != null && dat.getInicio().getDato().getFrom().compareTo(from) > 0) {
+                aux = left;
+            }
+            if (right != null && dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
+                aux = right;
+            }
+            else
+                return null;
         }
-        
+
+        return aux.dat;   //Devuelvo la lista con los emails del remitente deseado
+
     }
 
     public Lista getByQuery(String[] query) throws Exception {

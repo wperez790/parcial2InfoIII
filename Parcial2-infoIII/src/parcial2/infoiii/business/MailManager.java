@@ -2,6 +2,7 @@ package parcial2.infoiii.business;
 
 import java.util.Date;
 import parcial2.infoiii.Context;
+import parcial2.infoiii.model.AVLTree;
 import parcial2.infoiii.model.Email;
 import parcial2.infoiii.model.Lista;
 import parcial2.infoiii.model.NodeList;
@@ -99,7 +100,7 @@ public class MailManager {
      */
     public Email[] getByFrom(String from) {
 
-        Context.avlTreeFrom.getByFrom(from);
+        Context.list= Context.avlTreeFrom.getByFrom(from);
         
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux =Context.list.getInicio();
