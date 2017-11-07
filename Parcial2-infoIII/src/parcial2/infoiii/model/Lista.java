@@ -38,13 +38,13 @@ public class Lista<T> {
         NodeList aux = inicio;
 
         if (inicio == null) {
-            NodeList nuevo = new NodeList(dat, null);
-            tamanio = 0;
+            NodeList nuevo = new NodeList(dat, inicio);
+            tamanio = 1;
             inicio = nuevo;
             return;
         }
 
-        while (aux.getNext() != null) {
+        while (aux.getNext()!= null) {
 
             aux = aux.getNext();
         }
@@ -58,8 +58,8 @@ public class Lista<T> {
         NodeListPos aux = inicioLP;
 
         if (inicioLP== null) {
-            NodeListPos nuevo = new NodeListPos( dat, null);
-            tamanio = 0;
+            NodeListPos nuevo = new NodeListPos( dat, inicioLP);
+            tamanio = 1;
             inicioLP = nuevo;
             return;
         }

@@ -23,7 +23,7 @@ public class Parcial2InfoIII extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Context.avlTreeDate = new AVLTree();//Context.initAVLTree();
+        Context.avlTreeDate = Context.initAVLTree();
         Context.avlTreeFrom = Context.initAVLTree();
         Context.hashAvlTree = Context.initHashMap();
         Context.list = new Lista();

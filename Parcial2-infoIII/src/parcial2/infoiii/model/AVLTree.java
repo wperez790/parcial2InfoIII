@@ -60,15 +60,11 @@ public class AVLTree <T extends Comparable> {
         }
     }
     
-    public Lista getByFrom(String from, Lista list){
+    public void getByFrom(String from){
         if(root != null){
-            list = root.getByFrom(from,list);
-            return list;
+           root.getByFrom(from);
         }
-        else{
-            System.out.println("Árbol vacío");
-            return null;
-        }
+        
     }
     
     public Lista getByQuery(String[] query) throws Exception{

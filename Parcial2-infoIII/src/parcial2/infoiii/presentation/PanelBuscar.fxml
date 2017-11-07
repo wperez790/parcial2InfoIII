@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parcial2.infoiii.presentation.PanelBuscarController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parcial2.infoiii.presentation.PanelBuscarController">
    <children>
       <SplitPane fx:id="splitPaneBuscar" dividerPositions="0.3210702341137124" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #000000;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
@@ -93,7 +93,7 @@
                         <Font name="Garuda" size="19.0" />
                      </font>
                   </JFXButton>
-                  <TableView layoutX="230.0" layoutY="75.0" prefHeight="336.0" prefWidth="798.0" style="-fx-background-color: #3e3e3e; -fx-border-color: #000000;" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <TableView fx:id="tableMailsSearch" layoutX="230.0" layoutY="75.0" prefHeight="336.0" prefWidth="798.0" style="-fx-background-color: #3e3e3e; -fx-border-color: #000000;" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columns>
                       <TableColumn prefWidth="75.0" text="C1" />
                       <TableColumn prefWidth="75.0" text="C2" />

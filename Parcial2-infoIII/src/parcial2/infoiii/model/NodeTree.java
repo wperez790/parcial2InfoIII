@@ -1,5 +1,7 @@
 package parcial2.infoiii.model;
 
+import parcial2.infoiii.Context;
+
 public class NodeTree {
 
     private int height;
@@ -269,16 +271,18 @@ public class NodeTree {
         }
     }
 
-    public Lista getByFrom(String from, Lista list) {
+    public void getByFrom(String from) {
 
-        //Hubico la lista con los emails del remitente deseado
+        //Ubico la lista con los emails del remitente deseado
         if (left != null && dat.getInicio().getDato().getFrom().compareTo(from) > 0) {
-            left.getByFrom(from, list);
+            left.getByFrom(from);
+        }  if (right != null && dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
+            right.getByFrom(from);
+        } 
+        if (dat.getInicio().getDato().getFrom().compareTo(from) == 0){
+            Context.list= dat;   //Devuelvo la lista con los emails del remitente deseado
         }
-        if (right != null && dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
-            right.getByFrom(from, list);
-        }
-        return dat;   //Devuelvo la lista con los emails del remitente deseado
+        
     }
 
     public Lista getByQuery(String[] query) throws Exception {
@@ -295,32 +299,32 @@ public class NodeTree {
         while (aux.getNext() != null) {
             if (aux.getDato().getSubject() == true) {
                 String[] splited = aux.getDato().getEmail().getSubject().split("\\s+");
-                boolean ok= true;
-                for (int i = 0; i < query.length && ok==true ; i++)     //Comparar arreglo query[] con key + lo que sigue
+                boolean ok = true;
+                for (int i = 0; i < query.length && ok == true; i++) //Comparar arreglo query[] con key + lo que sigue
                 {
-                    if(query[i].compareTo(splited[aux.getDato().getPos()+i])!=0){
+                    if (query[i].compareTo(splited[aux.getDato().getPos() + i]) != 0) {
                         ok = false;
-                    }                    
+                    }
                 }
-                if(ok == true)
+                if (ok == true) {
                     list.insertar(aux.getDato().getEmail());
-            } 
-            else {          
+                }
+            } else {
                 String[] splited = aux.getDato().getEmail().getContent().split("\\s+");
-                boolean ok= true;
-                for (int i = 0; i < query.length && ok==true ; i++)     
-                {
-                    if(query[i].compareTo(splited[aux.getDato().getPos()+i])!=0){
+                boolean ok = true;
+                for (int i = 0; i < query.length && ok == true; i++) {
+                    if (query[i].compareTo(splited[aux.getDato().getPos() + i]) != 0) {
                         ok = false;
-                    }                    
+                    }
                 }
-                if(ok == true)
+                if (ok == true) {
                     list.insertar(aux.getDato().getEmail());
-                
+                }
+
             }
             aux = aux.getNext();
         }
-        
+
         return list;
     }
 

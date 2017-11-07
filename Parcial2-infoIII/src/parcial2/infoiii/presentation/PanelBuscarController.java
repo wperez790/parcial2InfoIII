@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.business.MailManager;
@@ -50,7 +51,9 @@ public class PanelBuscarController implements Initializable {
     private JFXButton btnBack;
    
     //AUXILIARES
-    MailManager mailManagerBO;
+    MailManager mailManagerBO = new MailManager();
+    @FXML
+    private TableView<Email> tableMailsSearch;
     //
     /**
      * Initializes the controller class.
@@ -79,12 +82,16 @@ public class PanelBuscarController implements Initializable {
 
     @FXML
     private void btnBuscarAction(ActionEvent event) throws Exception {
-        Email[] e1;
-        Email[] e2;
+        Email e1[] = null;
+        Email e2[] = null;
         if(!textFieldRemitente.getText().isEmpty())
             e1= mailManagerBO.getByFrom(textFieldRemitente.getText());
         if(!textFieldPalabra.getText().isEmpty())
             e2 = mailManagerBO.getByQuery(textFieldPalabra.getText());
+        
+        /*        for(int i = 0; i<e1.length; i++){
+        
+        }*/
        
         
     }
