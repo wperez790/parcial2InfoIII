@@ -29,7 +29,7 @@ public class MailManagerTest {
         String direccion = Context.op;
 
         try {
-            FileReader in = new FileReader("/home/ramiro/Documentos/Enlace hacia Facultad/Informatica III/NetBeans/Parcial2-infoIII/"+direccion);
+            FileReader in = new FileReader("/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/"+direccion);
             BufferedReader buf = new BufferedReader(in);
 
             while ((line = buf.readLine()) != null) {

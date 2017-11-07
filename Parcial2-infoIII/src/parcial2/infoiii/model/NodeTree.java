@@ -9,6 +9,7 @@ public class NodeTree {
 
     public NodeTree(Email dat) throws Exception {
         this.height = 0;
+        this.dat = new Lista();
         this.dat.insertar(dat);
         this.left = null;
         this.right = null;
@@ -16,6 +17,7 @@ public class NodeTree {
 
     public NodeTree(ContenedorMail dat) throws Exception {
         this.height = 0;
+        this.dat = new Lista();
         this.dat.insertarContenedor(dat);
         this.left = null;
         this.right = null;

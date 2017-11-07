@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import parcial2.infoiii.model.AVLTree;
 import parcial2.infoiii.model.Lista;
 
 /**
@@ -22,12 +23,13 @@ public class Parcial2InfoIII extends Application {
     
     @Override
     public void start(Stage primaryStage) {
-        Context.abrirContenedorPrincipal();
-        Context.abrirMenu();
-        Context.avlTreeDate = Context.initAVLTree();
+        Context.avlTreeDate = new AVLTree();//Context.initAVLTree();
         Context.avlTreeFrom = Context.initAVLTree();
         Context.hashAvlTree = Context.initHashMap();
         Context.list = new Lista();
+        Context.abrirContenedorPrincipal();
+        Context.abrirMenu();
+        
     }
 
     /**
