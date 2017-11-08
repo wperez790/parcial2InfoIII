@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.SplitPane;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import parcial2.infoiii.Context;
@@ -60,7 +61,15 @@ public class PanelBuscarController implements Initializable {
     ObservableList<Mails> mailsData = FXCollections.observableArrayList();
     //
     @FXML
-    private TableView<Email> tableMailsSearch;
+    private TableView<Mails> tableMailsSearch;
+    @FXML
+    private TableColumn<Mails, String> fromColumn;
+    @FXML
+    private TableColumn<Mails, String> toColumn;
+    @FXML
+    private TableColumn<Mails, String> dateColumn;
+    @FXML
+    private TableColumn<Mails, String> idColumn;
 
     //
     /**
@@ -68,11 +77,19 @@ public class PanelBuscarController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        fromColumn.setCellValueFactory(cellData -> cellData.getValue().getFrom());
+        toColumn.setCellValueFactory(cellData -> cellData.getValue().getTo());
+        dateColumn.setCellValueFactory(cellData -> cellData.getValue().getDate());
+        /*        idColumn.setCellValueFactory(cellData -> cellData.getValue().getId());*/
 
     }
 
     @FXML
     private void btnVerAction(ActionEvent event) {
+        
+        Context.email = tableMailsSearch.getSelectionModel().getSelectedItem().getEmail().getValue();
+        Context.abrirEmail();
+      
     }
 
     @FXML
@@ -107,6 +124,7 @@ public class PanelBuscarController implements Initializable {
             }
         }
         a = Context.list;
+        tableMailsSearch.setItems(mailsData);
 
         /*        for(int i = 0; i<e1.length; i++){
         
