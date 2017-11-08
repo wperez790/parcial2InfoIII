@@ -246,7 +246,7 @@ public class NodeTree {
 
     public void getSortedByDate(String desde, String hasta, Lista list) {
 
-        //Hubico la fecha inicial (desde)
+        //Ubico la fecha inicial (desde)
         if (left != null && dat.getInicio().getDato().getDate().compareTo(desde) > 0) {
             left.getSortedByDate(desde, hasta, list);
         }
@@ -271,7 +271,7 @@ public class NodeTree {
         }
     }
 
-    public Lista getByFrom(String from) {
+    public Lista getByFrom(String from) throws Exception {
         NodeTree aux = this;
         //Ubico la lista con los emails del remitente deseado
         while (aux.dat.getInicio().getDato().getFrom().compareTo(from) != 0) {
@@ -281,8 +281,9 @@ public class NodeTree {
             if (right != null && dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
                 aux = right;
             }
-            else
-                return null;
+        }
+        if (aux == null) {
+            throw new Exception();
         }
 
         return aux.dat;   //Devuelvo la lista con los emails del remitente deseado
@@ -290,17 +291,21 @@ public class NodeTree {
     }
 
     public Lista getByQuery(String[] query) throws Exception {
-
-        if (left != null && dat.getInicioLP().getDato().getKey().compareTo(query[0]) > 0) {
-            left.getByQuery(query);
-        }
-        if (right != null && dat.getInicioLP().getDato().getKey().compareTo(query[0]) < 0) {
-            right.getByQuery(query);
+        NodeTree aux2 = this;
+        while (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) != 0) {
+            if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) > 0) {
+                aux2 = left;
+            }
+            if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) < 0) {
+                aux2 = right;
+            } else if (aux2 == null) {
+                throw new Exception();
+            }
         }
         Lista list = new Lista();
-        NodeListPos aux = dat.getInicioLP();
+        NodeListPos aux = aux2.dat.getInicioLP();
 
-        while (aux.getNext() != null) {
+        while (aux != null) {
             if (aux.getDato().getSubject() == true) {
                 String[] splited = aux.getDato().getEmail().getSubject().split("\\s+");
                 boolean ok = true;
@@ -328,8 +333,9 @@ public class NodeTree {
             }
             aux = aux.getNext();
         }
-
         return list;
+    }
+
     }
 
     /*public void inOrder() {
@@ -341,4 +347,3 @@ public class NodeTree {
         if (right != null) {
             right.inOrder();
         }*/
-}

@@ -52,18 +52,18 @@ public class HashMap <K,T extends Comparable>{
         }
     }
 
-    public int hash(String key){
+    public double hash(String key){
         
-        int n = 0, x = 0;
+        double n = 0, x = 0;
         for(int i = 0; i < key.length(); i++){
             n = (int) key.charAt(i);
-            x += n*(pow(128,key.length() - i));
+            x += n*(pow(2,key.length() - i));
         }
         return x;
     }
 
     public int inRange(String key){
-        return hash(key) % size;
+        return (int) (hash(key) % size);
     }
 
     public boolean remove(String key){

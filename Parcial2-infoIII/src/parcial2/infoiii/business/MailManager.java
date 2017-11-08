@@ -43,7 +43,7 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux.getNext() != null) {
+        while (aux != null) {
             email[i] = aux.getDato();
             aux = aux.getNext();
             i++;
@@ -65,7 +65,7 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux.getNext() != null) {
+        while (aux != null) {
             email[i] = aux.getDato();
             aux = aux.getNext();
             i++;
@@ -84,7 +84,7 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux.getNext() != null) {
+        while (aux != null) {
             email[i] = aux.getDato();
             aux = aux.getNext();
             i++;
@@ -98,7 +98,7 @@ public class MailManager {
      * @param from String con direccion del remitente
      * @return lista de mails del remitente
      */
-    public Email[] getByFrom(String from) {
+    public Email[] getByFrom(String from) throws Exception {
 
         Context.list= Context.avlTreeFrom.getByFrom(from);
         
@@ -126,7 +126,7 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux.getNext() != null) {
+        while (aux != null) {
             email[i] = aux.getDato();
             aux = aux.getNext();
             i++;

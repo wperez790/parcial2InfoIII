@@ -53,7 +53,7 @@ public class AVLTree<T extends Comparable> {
         }
     }
 
-    public Lista getByFrom(String from) {
+    public Lista getByFrom(String from) throws Exception {
         if (root != null) {
             return root.getByFrom(from);
         } else {
