@@ -11,8 +11,10 @@ import javafx.stage.Stage;
 import parcial2.infoiii.presentation.ContenedorPrincipalController;
 import parcial2.infoiii.presentation.MenuController;
 import parcial2.infoiii.model.AVLTree;
+import parcial2.infoiii.model.Email;
 import parcial2.infoiii.model.HashMap;
 import parcial2.infoiii.model.Lista;
+import parcial2.infoiii.presentation.DetalleMailController;
 /**
  *
  * @author walt
@@ -26,6 +28,7 @@ public class Context<T extends Comparable> {
     public static HashMap hashAvlTree;
     public static Lista list;
     public static String op;
+    public static Email email;
     
     public static AVLTree initAVLTree(){
         return new AVLTree();
@@ -45,6 +48,11 @@ public class Context<T extends Comparable> {
         ContenedorPrincipalController contenedor = new ContenedorPrincipalController();
         contenedor.init();
 
+    }
+
+    public static void abrirEmail() {
+       DetalleMailController detalle = new DetalleMailController();
+       detalle.init();
     }
 
 }

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-image: url(&quot;file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/presentation/img/backgroundMail.jpeg&quot;); -fx-background-size: cover;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="parcial2.infoiii.presentation.DetalleMailController">
+   <children>
+      <GridPane layoutX="244.0" layoutY="240.0" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints maxHeight="187.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="180.0" minHeight="10.0" prefHeight="81.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="315.0" minHeight="10.0" prefHeight="306.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="54.0" minHeight="10.0" prefHeight="54.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <JFXTextArea fx:id="textAreaContenido" editable="false" focusColor="WHITE" prefHeight="182.0" prefWidth="800.0" promptText="Vacio" style="-fx-border-color: #b7b7b7; -fx-border-width: 5;" unFocusColor="WHITE" GridPane.rowIndex="2">
+               <font>
+                  <Font name="Garuda" size="15.0" />
+               </font>
+            </JFXTextArea>
+            <Label style="-fx-background-color: #b7b7b7;" text="Remitente" underline="true" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Garuda Bold" size="25.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label style="-fx-background-color: #b7b7b7;" text="Destinatario" underline="true" GridPane.halignment="CENTER" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Garuda Bold" size="25.0" />
+               </font>
+            </Label>
+            <Label style="-fx-background-color: #b7b7b7;" text="Asunto:" underline="true" GridPane.rowIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Garuda Bold" size="25.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="labelRemitente" style="-fx-background-color: #b7b7b7;" text="Label">
+               <font>
+                  <Font name="Garuda" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="labelDestinatario" style="-fx-background-color: #b7b7b7;" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Garuda" size="18.0" />
+               </font>
+            </Label>
+            <Label style="-fx-background-color: #b7b7b7;" text="Fecha" underline="true" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <font>
+                  <Font name="Garuda Bold" size="25.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Label fx:id="labelFecha" layoutX="379.0" layoutY="80.0" style="-fx-background-color: #b7b7b7;" text="Label" GridPane.halignment="RIGHT">
+               <font>
+                  <Font name="Garuda" size="18.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" />
+               </GridPane.margin>
+            </Label>
+            <JFXButton fx:id="btnClose" buttonType="RAISED" onAction="#btnCloseAction" ripplerFill="#fc0000" style="-fx-background-color: #b7b7b7;" text="Cerrar" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="10.0" />
+               </GridPane.margin>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <Lighting diffuseConstant="1.02" specularExponent="4.76" surfaceScale="1.86">
+                     <bumpInput>
+                        <Shadow />
+                     </bumpInput>
+                     <light>
+                        <Light.Distant />
+                     </light>
+                  </Lighting>
+               </effect></JFXButton>
+            <JFXTextArea fx:id="textAreaAsunto" prefWidth="600.0" promptText="Vacio" AnchorPane.leftAnchor="50.0" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="100.0" />
+               </GridPane.margin>
+               <font>
+                  <Font name="Garuda" size="18.0" />
+               </font></JFXTextArea>
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>
