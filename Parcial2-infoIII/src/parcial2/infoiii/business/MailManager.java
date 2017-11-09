@@ -79,7 +79,7 @@ public class MailManager {
      * @return lista de mails ordenados
      */
     public Email[] getSortedByFrom() {
-
+        Context.list = new Lista();
         Context.avlTreeFrom.getSorted(Context.list);
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();

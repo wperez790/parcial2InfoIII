@@ -8,18 +8,24 @@ import parcial2.infoiii.Context;
 import parcial2.infoiii.model.Email;
 
 public class MailManagerTest {
+
     private MailManager mm = new MailManager();
 
-    
     public void setUp() {
         mm = new MailManager();
-    }   
-   public void addMail() throws Exception {
+    }
+
+    public void addMail() throws Exception {
+        int i = 0;
         ArrayList<Email> mails = loadMails();
         for (Email m : mails) {
             mm.addMail(m);
-        }        
+            if (i++ % 100 == 0) {
+                System.out.println(i);
+            }
+        }
     }
+
     public ArrayList<Email> loadMails() {
         String aux = null;
         String line = null;
@@ -34,15 +40,15 @@ public class MailManagerTest {
 
             while ((line = buf.readLine()) != null) {
                 // proceso estructura del archivo
-                campos = line.split(":",2);
+                campos = line.split(":", 2);
                 //System.out.println(line);
 
-                if (campos.length > 0)
+                if (campos.length > 0) {
                     switch (campos[0]) {
                         case "-.-.-":
-                            if (mail != null)
+                            if (mail != null) {
                                 ret.add(mail);
-
+                            }
                             mail = new Email();
                             mail.setContent("");
                             break;
@@ -53,16 +59,17 @@ public class MailManagerTest {
                             mail.setFrom(campos[1].trim());
                             break;
                         case "to":
-                            mail.setTo(campos[1].trim()); 
+                            mail.setTo(campos[1].trim());
                             break;
                         case "subject":
                             mail.setSubject(campos[1].trim());
                             break;
                         default:
-                            aux += line + "\n";
-                            mail.setContent(aux);
+
+                            mail.setContent(mail.getContent() + line + "\n");
                             break;
                     }
+                }
             }
 
         } catch (IOException e) {

@@ -20,7 +20,7 @@ import parcial2.infoiii.model.Lista;
  * @author walt
  */
 public class Parcial2InfoIII extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
         Context.avlTreeDate = Context.initAVLTree();
@@ -29,14 +29,52 @@ public class Parcial2InfoIII extends Application {
         Context.list = new Lista();
         Context.abrirContenedorPrincipal();
         Context.abrirMenu();
-        
+
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+
+        //launch(args);
+        /**/
+        try {
+            Test t = new Test();
+
+            t.load();
+
+            t.setUp();
+            t.pruebaAgregado();
+            t.showBenchmark();
+
+            t.setUp();
+            t.pruebaMostrarPorFecha();
+            t.showBenchmark();
+
+            t.setUp();
+            t.pruebaMostrarPorRemitente();
+            t.showBenchmark();
+
+            t.setUp();
+            t.pruebaMostrarPorRangoFecha();
+            t.showBenchmark();
+
+            t.setUp();
+            t.pruebaBuscarPorRemitente();
+            t.showBenchmark();
+
+            t.setUp();
+            t.pruebaByQuery();
+            t.showBenchmark();
+
+            t.setUp();
+            t.pruebaBorrar();
+            t.showBenchmark();
+        } catch (Exception e) {
+
+        }
+        /**/
     }
-    
+
 }
