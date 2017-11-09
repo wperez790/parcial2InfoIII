@@ -1,2 +1,9 @@
 /Parcial2-infoIII/build/
 /Parcial2-infoIII/dist/
+
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
