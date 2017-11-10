@@ -110,18 +110,23 @@ public class PanelBuscarController implements Initializable {
         Email e1[] = null;
         Email e2[] = null;
         Lista a = null;
-
-        if (!textFieldRemitente.getText().isEmpty()) {
+        mailsData.clear();
+        tableMailsSearch.setItems(mailsData);        //Seteo la tabla en blanco al presionar el boton nuevamente
+        if (!textFieldRemitente.getText().isEmpty()) { //Si el campo Remitente no esta vacio realizo la busqueda
             e1 = mailManagerBO.getByFrom(textFieldRemitente.getText());
             for (int i = 0; i < e1.length; i++) {
                 mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i]));
             }
         }
-        if (!textFieldPalabra.getText().isEmpty()) {
+        if (!textFieldPalabra.getText().isEmpty()) {   //Si el campo Palabra no esta vacio Realizo la busqueda
             e2 = mailManagerBO.getByQuery(textFieldPalabra.getText());
             for (int i = 0; i < e2.length; i++) {
                 mailsData.add(new Mails(e2[i].getFrom(), e2[i].getTo(), e2[i].getDate(), e2[i]));
             }
+        }
+        if(!datePickerDesde.getEditor().getText().isEmpty())
+        {
+            
         }
         a = Context.list;
         tableMailsSearch.setItems(mailsData);

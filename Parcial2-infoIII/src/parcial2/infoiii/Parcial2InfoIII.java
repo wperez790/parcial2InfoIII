@@ -37,8 +37,8 @@ public class Parcial2InfoIII extends Application {
      */
     public static void main(String[] args) {
 
-        //launch(args);
-        /**/
+        launch(args);
+        /** /
         try {
             Test t = new Test();
 
