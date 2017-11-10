@@ -6,6 +6,16 @@ public class HashMap <K,T extends Comparable>{
 
    private AVLTree<T> table[];
    private int size;
+   private int tam = 0;
+
+    public int getTam() {
+        return tam;
+    }
+
+    public void setTam(int tam) {
+        this.tam = tam;
+    }
+    
 
     public HashMap(int size){
         this.size = size;

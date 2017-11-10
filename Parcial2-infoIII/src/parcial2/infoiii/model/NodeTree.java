@@ -115,7 +115,7 @@ public class NodeTree {
         } else if (aux.dat.getInicio().getDato().getFrom().compareTo(m.getFrom()) < 0) {
             aux.right = insertByFrom(aux.right, m);
         } else {
-            this.dat.insertar(m);
+            aux.dat.insertar(m);
         }
 
         aux.height = height(aux);
@@ -158,7 +158,7 @@ public class NodeTree {
         } else if (aux.dat.getInicio().getDato().getDate().compareTo(m.getDate()) < 0) {
             aux.right = insertByDate(aux.right, m);
         } else {
-            this.dat.insertar(m);
+            aux.dat.insertar(m);
         }
 
         aux.height = height(aux);
@@ -193,6 +193,7 @@ public class NodeTree {
     public NodeTree insertByWord(NodeTree aux, ContenedorMail cm) throws Exception {
 
         if (aux == null) {
+            Context.hashAvlTree.setTam(Context.hashAvlTree.getTam() + 1);
             return new NodeTree(cm);
         }
 
@@ -201,7 +202,7 @@ public class NodeTree {
         } else if (aux.dat.getInicioLP().getDato().getKey().compareTo(cm.getKey()) < 0) {
             aux.right = insertByWord(aux.right, cm);
         } else {
-            this.dat.insertarContenedor(cm);
+            aux.dat.insertarContenedor(cm);
         }
 
         aux.height = height(aux);
@@ -275,17 +276,17 @@ public class NodeTree {
         NodeTree aux = this;
         //Ubico la lista con los emails del remitente deseado
         while (aux.dat.getInicio().getDato().getFrom().compareTo(from) != 0) {
-            if (left != null && dat.getInicio().getDato().getFrom().compareTo(from) > 0) {
-                aux = left;
+            if (aux.dat.getInicio().getDato().getFrom().compareTo(from) > 0) {
+                aux = aux.left;
             }
-            if (right != null && dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
-                aux = right;
+            else if (aux.dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
+                aux = aux.right;
+            }
+            if (aux == null) {
+                throw new Exception();
             }
         }
-        if (aux == null) {
-            throw new Exception();
-        }
-
+           
         return aux.dat;   //Devuelvo la lista con los emails del remitente deseado
 
     }
@@ -294,11 +295,12 @@ public class NodeTree {
         NodeTree aux2 = this;
         while (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) != 0) {
             if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) > 0) {
-                aux2 = left;
+                aux2 = aux2.left;
             }
-            if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) < 0) {
-                aux2 = right;
-            } else if (aux2 == null) {
+            else if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) < 0) {
+                aux2 = aux2.right;
+            } 
+            if (aux2 == null) {
                 throw new Exception();
             }
         }
