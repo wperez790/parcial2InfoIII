@@ -129,6 +129,7 @@ public class PanelBuscarController implements Initializable {
             
         }
         a = Context.list;
+        
         tableMailsSearch.setItems(mailsData);
 
         /*        for(int i = 0; i<e1.length; i++){

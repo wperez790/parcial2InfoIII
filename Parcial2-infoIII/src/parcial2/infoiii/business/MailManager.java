@@ -100,10 +100,10 @@ public class MailManager {
      */
     public Email[] getByFrom(String from) throws Exception {
 
-        Context.list= Context.avlTreeFrom.getByFrom(from);
+        Context.list = Context.avlTreeFrom.getByFrom(from);
         
         Email email[] = new Email[Context.list.getTamanio()];
-        NodeList aux =Context.list.getInicio();
+        NodeList aux = Context.list.getInicio();
         int i = 0;
         while (aux != null) {
             email[i] = aux.getDato();
