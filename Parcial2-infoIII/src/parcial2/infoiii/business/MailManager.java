@@ -136,8 +136,8 @@ public class MailManager {
 
     public String splitDate(String notSplited) {
         String[] splited = notSplited.split("/");
-        String aux = null;
-        for (int i = splited.length - 1; i <= 0; i--) {
+        String aux = "";
+        for (int i = splited.length - 1; i >= 0; i--) {
             aux += splited[i] + "-";
         }
         aux += " 00:00:00";

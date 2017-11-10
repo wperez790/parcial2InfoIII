@@ -107,15 +107,20 @@ public class PanelBuscarController implements Initializable {
 
     @FXML
     private void btnBuscarAction(ActionEvent event) throws Exception {
-        Email e1[] = null;
-        Email e2[] = null;
-        Lista a = null;
+        Email e1[] = null;    //Manejo por Remitente
+        Email e2[] = null;   //Manejo por Palabras
+        Email e3[] = null;  //Manejo por Fechas
+        
+        String desde= datePickerDesde.getEditor().getText();
+        String hasta = datePickerHasta.getEditor().getText();
+        String fecha= datePickerFecha.getEditor().getText();
         mailsData.clear();
         tableMailsSearch.setItems(mailsData);        //Seteo la tabla en blanco al presionar el boton nuevamente
+        
         if (!textFieldRemitente.getText().isEmpty()) { //Si el campo Remitente no esta vacio realizo la busqueda
             e1 = mailManagerBO.getByFrom(textFieldRemitente.getText());
             for (int i = 0; i < e1.length; i++) {
-                mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i]));
+                mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i]));   //Agrego datos que necesito al objeto ObservableList de la tabla
             }
         }
         if (!textFieldPalabra.getText().isEmpty()) {   //Si el campo Palabra no esta vacio Realizo la busqueda
@@ -124,11 +129,37 @@ public class PanelBuscarController implements Initializable {
                 mailsData.add(new Mails(e2[i].getFrom(), e2[i].getTo(), e2[i].getDate(), e2[i]));
             }
         }
-        if(!datePickerDesde.getEditor().getText().isEmpty())
+        if(!desde.isEmpty() && !hasta.isEmpty())
         {
+             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
+             
+             for (int i = 0; i < e3.length; i++) {
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+            }
             
         }
-        a = Context.list;
+        else if(!desde.isEmpty() && hasta.isEmpty()){
+             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
+             
+             for (int i = 0; i < e3.length; i++) {
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+            }
+        }
+            
+        else if(desde.isEmpty() && !hasta.isEmpty()){
+            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
+            
+            for (int i = 0; i < e3.length; i++) {
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+            }
+        }
+        else if(!datePickerFecha.getEditor().getText().isEmpty()){
+            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(fecha),mailManagerBO.splitDate(fecha));
+              for (int i = 0; i < e3.length; i++) {
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+            }
+            
+        }
         
         tableMailsSearch.setItems(mailsData);
 
