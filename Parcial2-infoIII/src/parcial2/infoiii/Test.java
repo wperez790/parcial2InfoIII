@@ -60,7 +60,7 @@ public class Test {
     }
 
     // @Test
-    void pruebaMostrarPorFecha() {
+    void pruebaMostrarPorFecha() throws Exception {
         startTime = System.nanoTime();
         tmp1 = mm.getSortedByDate();
         stopTime = System.nanoTime();
@@ -84,7 +84,7 @@ public class Test {
     }
 
     //  @Test
-    void pruebaMostrarPorRemitente() {
+    void pruebaMostrarPorRemitente() throws Exception {
         startTime = System.nanoTime();
         tmp1 = mm.getSortedByFrom();
         stopTime = System.nanoTime();
@@ -106,7 +106,7 @@ public class Test {
     }
 
     //  @Test
-    void pruebaMostrarPorRangoFecha() {
+    void pruebaMostrarPorRangoFecha() throws Exception {
         startTime = System.nanoTime();
         tmp1 = mm.getSortedByDate("2011-07-25 17:10", "2013-09-24 00:10");
         stopTime = System.nanoTime();

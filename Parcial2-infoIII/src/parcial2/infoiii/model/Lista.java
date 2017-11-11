@@ -124,7 +124,7 @@ public class Lista<T> {
 
     public Lista concatenar(Lista lista1, Lista lista2) {
         
-        if(lista1 == null){
+        if(lista1.inicio == null){
             lista1 = lista2;
             lista1.setTamanio(lista2.getTamanio());
             return lista1;

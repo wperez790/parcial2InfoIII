@@ -32,24 +32,31 @@ public class AVLTree<T extends Comparable> {
         }
     }
 
-    public Lista getSorted(Lista list) {
+    public void getSorted() throws Exception {
         if (root != null) {
-            root.getSorted(list);
-            return list;
+            root.getSorted();
+            
         } else {
-            return null;
+            throw new Exception("Vacio");
         }
     }
 
-    public Lista getSortedByDate(String desde, String hasta, Lista list) {
-        if (root != null && root.getDat().getInicio().getDato().getDate().compareTo(desde) != 0) {
-            root.getSortedByDate(desde, hasta, list);
-            return list;
-        } else if (root != null) {
-            root.getSortedByDateTo(hasta, list);
-            return list;
+    public void getSortedByDate(String desde, String hasta) throws Exception {
+        if (root != null) {
+            root.getSortedByDate(desde, hasta);
         } else {
-            return null;
+            throw new Exception("Árbol vacio") ;
+                    /*        if (root != null && root.getDat().getInicio().getDato().getDate().compareTo(desde) != 0) {
+        //lista  //nodoIni //Email    //fecha
+        root.getSortedByDate(desde, hasta, list);
+        return list;
+        } else if (root != null) {
+        root.getSortedByDateTo(hasta, list);
+        return list;
+        } else {
+        return null;
+        }*/
+    
         }
     }
 

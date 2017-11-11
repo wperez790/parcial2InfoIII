@@ -37,9 +37,9 @@ public class MailManager {
      *
      * @return lista de mails ordenados
      */
-    public Email[] getSortedByDate() {
+    public Email[] getSortedByDate() throws Exception {
 
-        Context.avlTreeDate.getSorted(Context.list);
+        Context.avlTreeDate.getSorted();
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
@@ -59,9 +59,9 @@ public class MailManager {
      * @param hasta Fecha hasta donde buscar
      * @return lista de mails ordenados
      */
-    public Email[] getSortedByDate(String desde, String hasta) {
+    public Email[] getSortedByDate(String desde, String hasta) throws Exception {
 
-        Context.avlTreeDate.getSortedByDate(desde, hasta, Context.list);
+        Context.avlTreeDate.getSortedByDate(desde, hasta);
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
@@ -78,9 +78,9 @@ public class MailManager {
      *
      * @return lista de mails ordenados
      */
-    public Email[] getSortedByFrom() {
+    public Email[] getSortedByFrom() throws Exception {
         Context.list = new Lista();
-        Context.avlTreeFrom.getSorted(Context.list);
+        Context.avlTreeFrom.getSorted();
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
@@ -101,7 +101,7 @@ public class MailManager {
     public Email[] getByFrom(String from) throws Exception {
 
         Context.list = Context.avlTreeFrom.getByFrom(from);
-        
+
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
@@ -134,13 +134,21 @@ public class MailManager {
         return email;
     }
 
-    public String splitDate(String notSplited) {
+    public String splitDate(String notSplited, boolean night) {
         String[] splited = notSplited.split("/");
         String aux = "";
-        for (int i = splited.length - 1; i >= 0; i--) {
-            aux += splited[i] + "-";
+        aux += splited[2]+"-";
+        if(Integer.parseInt(splited[0])<10)    //DatePicker al mes lo pone sin 0, esto corrije el problema
+            aux += "0"+splited[0]+"-";
+        else
+            aux += splited[0]+"-";
+        aux += splited[1];
+        if (night == false) {
+            aux += " 00:00";
+        } else {
+            aux += " 23:59";
         }
-        aux += " 00:00:00";
         return aux;
     }
+
 }

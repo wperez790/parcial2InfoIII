@@ -234,41 +234,47 @@ public class NodeTree {
         return aux; //Sin replicados
     }
 
-    public void getSorted(Lista list) {
+    public void getSorted() {
 
         if (left != null) {
-            left.getSorted(list);
+            left.getSorted();
         }
-        list.concatenar(list, dat);
+        Context.list= Context.list.concatenar(Context.list, dat);
         if (right != null) {
-            right.getSorted(list);
+            right.getSorted();
         }
     }
 
-    public void getSortedByDate(String desde, String hasta, Lista list) {
-
-        //Ubico la fecha inicial (desde)
-        if (left != null && dat.getInicio().getDato().getDate().compareTo(desde) > 0) {
-            left.getSortedByDate(desde, hasta, list);
+    public void getSortedByDate(String desde, String hasta) {
+        NodeTree aux= this;
+        String nodoDate = aux.dat.getInicio().getDato().getDate();
+        //Si desde es null ubico el primer nodo
+        if (desde == null) {
+            aux = getMin();
         }
-        if (right != null && dat.getInicio().getDato().getDate().compareTo(desde) < 0) {
-            right.getSortedByDate(desde, hasta, list);
+        //Si desde no es null y hasta no es 
+        //Ubico la fecha inicial (desde)
+        else if (aux.left != null && nodoDate.compareTo(desde) >= 0) {
+                    aux.left.getSortedByDate(desde, hasta);
+        }
+        else if (aux.right != null && nodoDate.compareTo(desde) < 0) {
+            aux.right.getSortedByDate(desde, hasta);
         }
         if (hasta == null) {
-            this.getSorted(list);   //Si no se ingresa una fecha límite (hasta)
+            aux.getSorted();   //Si no se ingresa una fecha límite (hasta)
         } else {
-            this.getSortedByDateTo(hasta, list); //Muestro las listas hasta la fecha final (hasta)
+            aux.getSortedByDateTo(hasta); //Muestro las listas hasta la fecha final (hasta)
         }
     }
 
-    public void getSortedByDateTo(String hasta, Lista list) {
+    public void getSortedByDateTo(String hasta) {
 
-        if (left != null || dat.getInicio().getDato().getDate().compareTo(hasta) == 0) {
-            left.getSortedByDateTo(hasta, list);
+        if (left != null || dat.getInicio().getDato().getDate().compareTo(hasta) > 0) {
+            left.getSortedByDateTo(hasta);
         }
-        list.concatenar(list, dat);          //Concateno las listas desde-hasta
-        if (right != null || dat.getInicio().getDato().getDate().compareTo(hasta) == 0) {
-            right.getSortedByDateTo(hasta, list);
+        Context.list.concatenar(Context.list, dat);          //Concateno las listas desde-hasta
+        if (right != null || dat.getInicio().getDato().getDate().compareTo(hasta) < 0) {
+            right.getSortedByDateTo(hasta);
         }
     }
 
@@ -278,15 +284,14 @@ public class NodeTree {
         while (aux.dat.getInicio().getDato().getFrom().compareTo(from) != 0) {
             if (aux.dat.getInicio().getDato().getFrom().compareTo(from) > 0) {
                 aux = aux.left;
-            }
-            else if (aux.dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
+            } else if (aux.dat.getInicio().getDato().getFrom().compareTo(from) < 0) {
                 aux = aux.right;
             }
             if (aux == null) {
                 throw new Exception();
             }
         }
-           
+
         return aux.dat;   //Devuelvo la lista con los emails del remitente deseado
 
     }
@@ -296,10 +301,9 @@ public class NodeTree {
         while (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) != 0) {
             if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) > 0) {
                 aux2 = aux2.left;
-            }
-            else if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) < 0) {
+            } else if (aux2.dat.getInicioLP().getDato().getKey().compareTo(query[0]) < 0) {
                 aux2 = aux2.right;
-            } 
+            }
             if (aux2 == null) {
                 throw new Exception();
             }
@@ -338,9 +342,17 @@ public class NodeTree {
         return list;
     }
 
+    private NodeTree getMin() {
+        NodeTree aux = this;
+        while (aux.left != null) {
+            aux= aux.left;
+        }
+        return aux;
     }
 
-    /*public void inOrder() {
+}
+
+/*public void inOrder() {
         
         if (left != null) {
             left.inOrder();

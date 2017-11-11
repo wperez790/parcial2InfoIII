@@ -110,7 +110,7 @@ public class PanelBuscarController implements Initializable {
         Email e1[] = null;    //Manejo por Remitente
         Email e2[] = null;   //Manejo por Palabras
         Email e3[] = null;  //Manejo por Fechas
-        
+        Context.list = new Lista();
         String desde= datePickerDesde.getEditor().getText();
         String hasta = datePickerHasta.getEditor().getText();
         String fecha= datePickerFecha.getEditor().getText();
@@ -129,38 +129,44 @@ public class PanelBuscarController implements Initializable {
                 mailsData.add(new Mails(e2[i].getFrom(), e2[i].getTo(), e2[i].getDate(), e2[i]));
             }
         }
+        /*Si Desde y Hasta estan completados*/
         if(!desde.isEmpty() && !hasta.isEmpty())
         {
-             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
+             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde,false), mailManagerBO.splitDate(hasta,true));
              
              for (int i = 0; i < e3.length; i++) {
                 mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
             }
             
         }
+        /**/
+        /*Si solo Desde esta completado*/
         else if(!desde.isEmpty() && hasta.isEmpty()){
-             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
+             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde,false), null);
              
              for (int i = 0; i < e3.length; i++) {
                 mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
             }
         }
-            
+        /**/
+        /*Si solo Hasta esta completado*/
         else if(desde.isEmpty() && !hasta.isEmpty()){
-            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde), mailManagerBO.splitDate(hasta));
+            e3 = mailManagerBO.getSortedByDate(null , mailManagerBO.splitDate(hasta,true));
             
             for (int i = 0; i < e3.length; i++) {
                 mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
             }
         }
+        /**/
+        /*Si Fecha esta completado*/
         else if(!datePickerFecha.getEditor().getText().isEmpty()){
-            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(fecha),mailManagerBO.splitDate(fecha));
+            e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(fecha,false),mailManagerBO.splitDate(fecha, true));
               for (int i = 0; i < e3.length; i++) {
                 mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
             }
             
         }
-        
+        /**/
         tableMailsSearch.setItems(mailsData);
 
         /*        for(int i = 0; i<e1.length; i++){
