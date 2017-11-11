@@ -20,7 +20,7 @@
    <children>
       <SplitPane dividerPositions="0.362876254180602" layoutX="279.0" layoutY="84.0" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-image: url(&quot;file:/home/ramiro/Documentos/img/backgroundMail.jpeg&quot;); -fx-background-size: cover;">
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-image: url(&quot;file:src/parcial2/infoiii/presentation/img/backgroundMail.jpeg&quot;); -fx-background-size: cover;">
                <children>
                   <GridPane layoutX="14.0" layoutY="-2.0" prefHeight="213.0" prefWidth="798.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <columnConstraints>

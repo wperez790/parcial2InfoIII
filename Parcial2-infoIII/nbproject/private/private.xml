@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/presentation/PanelOrdenar.fxml</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/model/NodeTree.java</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/presentation/PanelAgregarController.java</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/presentation/PanelBuscarController.java</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/model/AVLTree.java</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/business/MailManager.java</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/model/Lista.java</file>
+            <file>file:/home/walt/NetBeansProjects/parcial2InfoIII/Parcial2-infoIII/src/parcial2/infoiii/presentation/PanelBuscar.fxml</file>
+        </group>
     </open-files>
 </project-private>
