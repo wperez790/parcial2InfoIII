@@ -43,10 +43,14 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux != null) {
+        /*      while (aux != null) {
+        email[i] = aux.getDato();
+        aux = aux.getNext();
+        i++;
+        }*/
+        for (i = 0; i < Context.list.getTamanio(); i++) {
             email[i] = aux.getDato();
             aux = aux.getNext();
-            i++;
         }
         return email;
     }
@@ -60,15 +64,24 @@ public class MailManager {
      * @return lista de mails ordenados
      */
     public Email[] getSortedByDate(String desde, String hasta) throws Exception {
-
-        Context.avlTreeDate.getSortedByDate(desde, hasta);
+        if(desde==null)
+            Context.avlTreeDate.getSortedByDateTo(hasta);
+        else if(hasta == null)
+            Context.avlTreeDate.getSortedByDateFrom(desde);
+        else{
+            Context.avlTreeDate.getSortedByDate(desde, hasta);
+        }
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux != null) {
+        /*        while (aux != null) {
+        email[i] = aux.getDato();
+        aux = aux.getNext();
+        i++;
+        }*/
+        for (i = 0; i < Context.list.getTamanio(); i++) {
             email[i] = aux.getDato();
             aux = aux.getNext();
-            i++;
         }
         return email;
     }
@@ -79,16 +92,21 @@ public class MailManager {
      * @return lista de mails ordenados
      */
     public Email[] getSortedByFrom() throws Exception {
-        Context.list = new Lista();
         Context.avlTreeFrom.getSorted();
         Email email[] = new Email[Context.list.getTamanio()];
+        Lista aux2 = Context.list;
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux != null) {
+        /*        while (aux != null) {
+        email[i] = aux.getDato();
+        aux = aux.getNext();
+        i++;
+        }*/
+        for (i = 0; i < Context.list.getTamanio(); i++) {
             email[i] = aux.getDato();
             aux = aux.getNext();
-            i++;
         }
+
         return email;
     }
 
@@ -101,14 +119,17 @@ public class MailManager {
     public Email[] getByFrom(String from) throws Exception {
 
         Context.list = Context.avlTreeFrom.getByFrom(from);
-
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux != null) {
+        /*       while (aux != null) {
+        email[i] = aux.getDato();
+        aux = aux.getNext();
+        i++;
+        }*/
+        for (i = 0; i < Context.list.getTamanio(); i++) {
             email[i] = aux.getDato();
             aux = aux.getNext();
-            i++;
         }
         return email;
     }
@@ -126,10 +147,15 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        while (aux != null) {
+        /*      while (aux != null) {
+        email[i] = aux.getDato();
+        aux = aux.getNext();
+        i++;
+        }*/
+
+        for (i = 0; i < Context.list.getTamanio(); i++) {
             email[i] = aux.getDato();
             aux = aux.getNext();
-            i++;
         }
         return email;
     }
@@ -137,16 +163,20 @@ public class MailManager {
     public String splitDate(String notSplited, boolean night) {
         String[] splited = notSplited.split("/");
         String aux = "";
-        aux += splited[2]+"-";
+        /*aux += splited[2]+"-";
         if(Integer.parseInt(splited[0])<10)    //DatePicker al mes lo pone sin 0, esto corrije el problema
-            aux += "0"+splited[0]+"-";
+        aux += "0"+splited[0]+"-";
         else
-            aux += splited[0]+"-";
-        aux += splited[1];
+        aux += splited[0]+"-";
+        aux += splited[1];*/
+        for (int i = splited.length - 1; i > 0; i--) {
+            aux += splited[i] + "-";
+        }
+        aux += splited[0] + " ";
         if (night == false) {
-            aux += " 00:00";
+            aux += "00:00";
         } else {
-            aux += " 23:59";
+            aux += "23:59";
         }
         return aux;
     }

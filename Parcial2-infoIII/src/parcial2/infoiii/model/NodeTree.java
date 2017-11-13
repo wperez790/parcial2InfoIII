@@ -239,43 +239,71 @@ public class NodeTree {
         if (left != null) {
             left.getSorted();
         }
-        Context.list= Context.list.concatenar(Context.list, dat);
+        Context.list = Context.list.concatenar(Context.list, dat);
         if (right != null) {
             right.getSorted();
         }
     }
 
     public void getSortedByDate(String desde, String hasta) {
+        String dateLeft = "";
+        String dateRight = "";
         NodeTree aux= this;
+        if(aux.left !=null){
+            dateLeft=aux.left.dat.getInicio().getDato().getDate();
+            if( desde.compareTo(dateLeft) <= 0 && aux.left!= null && hasta.compareTo(dateLeft) > 0){
+            aux.left.getSortedByDate(desde, hasta);
+            }
+        }  
+        Context.list = Context.list.concatenar(Context.list, dat);
+        if(aux.right!=null){
+            dateRight = aux.right.dat.getInicio().getDato().getDate();
+            if( desde.compareTo(dateRight) < 0 && aux.right!= null && hasta.compareTo(dateRight) >= 0){
+            aux.right.getSortedByDate(desde, hasta);
+            }
+        }               
+        
+        /*NodeTree aux= this;
         String nodoDate = aux.dat.getInicio().getDato().getDate();
         //Si desde es null ubico el primer nodo
         if (desde == null) {
-            aux = getMin();
+        aux.getSortedByDateTo(hasta);
         }
-        //Si desde no es null y hasta no es 
+        //Si desde no es null y hasta no es
         //Ubico la fecha inicial (desde)
         else if (aux.left != null && nodoDate.compareTo(desde) >= 0) {
-                    aux.left.getSortedByDate(desde, hasta);
+        aux.left.getSortedByDate(desde, hasta);
         }
         else if (aux.right != null && nodoDate.compareTo(desde) < 0) {
-            aux.right.getSortedByDate(desde, hasta);
+        aux.right.getSortedByDate(desde, hasta);
         }
         if (hasta == null) {
-            aux.getSorted();   //Si no se ingresa una fecha límite (hasta)
+        aux.getSorted();   //Si no se ingresa una fecha límite (hasta)
         } else {
-            aux.getSortedByDateTo(hasta); //Muestro las listas hasta la fecha final (hasta)
+        aux.getSortedByDateTo(hasta); //Muestro las listas hasta la fecha final (hasta)
+        }*/
         }
-    }
-
-    public void getSortedByDateTo(String hasta) {
-
+        
+       /* public void getSortedByDateTo(String hasta) {
+        
         if (left != null || dat.getInicio().getDato().getDate().compareTo(hasta) > 0) {
-            left.getSortedByDateTo(hasta);
+        left.getSortedByDateTo(hasta);
         }
-        Context.list.concatenar(Context.list, dat);          //Concateno las listas desde-hasta
+        Context.list = Context.list.concatenar(Context.list, dat);          //Concateno las listas desde-hasta
         if (right != null || dat.getInicio().getDato().getDate().compareTo(hasta) < 0) {
-            right.getSortedByDateTo(hasta);
+        right.getSortedByDateTo(hasta);
         }
+        }*/
+    
+    public void getSortedByDateTo(String hasta){
+        NodeTree aux = getMin();
+        Context.avlTreeDate.getRoot().getSortedByDate(aux.getDat().getInicio().getDato().getDate(), hasta);
+        
+    }
+    public void getSortedByDateFrom(String desde){
+        NodeTree aux = getMax();
+        
+        Context.avlTreeDate.getRoot().getSortedByDate(desde,aux.getDat().getInicio().getDato().getDate());
     }
 
     public Lista getByFrom(String from) throws Exception {
@@ -346,6 +374,14 @@ public class NodeTree {
         NodeTree aux = this;
         while (aux.left != null) {
             aux= aux.left;
+        }
+        return aux;
+    }
+
+    private NodeTree getMax() {
+        NodeTree aux = this;
+        while (aux.right != null) {
+            aux= aux.right;
         }
         return aux;
     }

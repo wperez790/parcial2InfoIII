@@ -4,6 +4,10 @@ public class AVLTree<T extends Comparable> {
 
     private NodeTree root;
 
+    public NodeTree getRoot() {
+        return root;
+    }
+
     public AVLTree() {
         this.root = null;
     }
@@ -34,7 +38,7 @@ public class AVLTree<T extends Comparable> {
 
     public void getSorted() throws Exception {
         if (root != null) {
-            root.getSorted();
+             root.getSorted();
             
         } else {
             throw new Exception("Vacio");
@@ -79,4 +83,20 @@ public class AVLTree<T extends Comparable> {
         if(root != null)
             root.inOrder();
     }*/
+
+    public void getSortedByDateTo(String hasta) throws Exception {
+        if (root != null) {
+           root.getSortedByDateTo(hasta);
+        }
+        else
+            throw new Exception();
+    }
+
+    public void getSortedByDateFrom(String desde) throws Exception {
+        if (root != null) {
+           root.getSortedByDateFrom(desde);
+        }
+        else
+            throw new Exception();
+    }
 }

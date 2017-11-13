@@ -23,6 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import parcial2.infoiii.Context;
 import parcial2.infoiii.business.MailManager;
 import parcial2.infoiii.model.Email;
+import parcial2.infoiii.model.Lista;
 import parcial2.infoiii.model.Mails;
 
 /**
@@ -38,7 +39,6 @@ public class PanelOrdenarController implements Initializable {
     private JFXDatePicker datePickerHasta;
     @FXML
     private JFXDatePicker datePickerFecha;
-    @FXML
     private JFXTextField textFieldRemitente;
     @FXML
     private JFXButton btnBuscar;
@@ -50,7 +50,7 @@ public class PanelOrdenarController implements Initializable {
     private TableView<Mails> tableOrdenar;
 
     //AUXILIARES
-    MailManager mailManagerBO;
+    MailManager mailManagerBO=new MailManager();
     ObservableList<Mails> mailsData = FXCollections.observableArrayList();
     //
     @FXML
@@ -61,6 +61,10 @@ public class PanelOrdenarController implements Initializable {
     private TableColumn<Mails, String> dateColumn;
     @FXML
     private TableColumn<Mails, String> idColumn;
+    @FXML
+    private JFXButton btnRemitente;
+    @FXML
+    private JFXButton btnOrdenarFecha;
 
     /**
      * Initializes the controller class.
@@ -136,5 +140,34 @@ public class PanelOrdenarController implements Initializable {
 
         }
     }
+
+    @FXML
+    private void btnRemitenteAction(ActionEvent event) throws Exception {
+        
+        Email[] e1=null;
+        Context.list = new Lista();
+        mailsData.clear();
+        tableOrdenar.setItems(mailsData);     
+        e1= mailManagerBO.getSortedByFrom();
+        for (int i = 0; i < e1.length; i++) {
+                mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i]));
+            }
+        tableOrdenar.setItems(mailsData); 
+    }
+
+    @FXML
+    private void btnOrdenarFechaAction(ActionEvent event) throws Exception {
+        Email[] e1=null;
+        Context.list = new Lista();
+        mailsData.clear();
+        tableOrdenar.setItems(mailsData);     
+        e1= mailManagerBO.getSortedByDate();
+        for (int i = 0; i < e1.length; i++) {
+                mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i]));
+            }
+        tableOrdenar.setItems(mailsData); 
+    }
+        
+    
 
 }
