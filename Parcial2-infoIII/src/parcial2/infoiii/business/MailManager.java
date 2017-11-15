@@ -28,10 +28,10 @@ public class MailManager {
      * @param id identificador del mail a borrar
      */
     public void deleteMail(long id) throws Exception {
-        Email e= Context.avlTreeID.delete(id);
+        Email e = Context.avlTreeID.delete(id);
         Context.avlTreeDate.deleteByDate(e.getDate());
         Context.avlTreeFrom.deleteByFrom(e.getFrom());
-       // Context.hashAvlTree.delete(e.getId(),e);
+        // Context.hashAvlTree.delete(e.getId(),e);
     }
 
     /**
@@ -66,11 +66,11 @@ public class MailManager {
      * @return lista de mails ordenados
      */
     public Email[] getSortedByDate(String desde, String hasta) throws Exception {
-        if(desde==null)
+        if (desde == null) {
             Context.avlTreeDate.getSortedByDateTo(hasta);
-        else if(hasta == null)
+        } else if (hasta == null) {
             Context.avlTreeDate.getSortedByDateFrom(desde);
-        else{
+        } else {
             Context.avlTreeDate.getSortedByDate(desde, hasta);
         }
         Email email[] = new Email[Context.list.getTamanio()];
@@ -165,24 +165,30 @@ public class MailManager {
     public String splitDate(String notSplited, boolean night) {
         String[] splited = notSplited.split("/");
         String aux = "";
-        /** / 
-        aux += splited[2]+"-";
-        if(Integer.parseInt(splited[0])<10)    //DatePicker al mes lo pone sin 0, esto corrije el problema
-        aux += "0"+splited[0]+"-";             //Para Zona EEUU
-        else
-        aux += splited[0]+"-";
-        aux += splited[1]+ " ";
         /**/
-        /**/
-        for (int i = splited.length - 1; i > 0; i--) {
-        aux += splited[i] + "-";
-        }
-        aux += splited[0] + " ";
-        /**/
-        if (night == false) {
-        aux += "00:00";
+        aux += splited[2] + "-";
+        if (Integer.parseInt(splited[0]) < 10) //DatePicker al mes lo pone sin 0, esto corrije el problema
+        {
+            aux += "0" + splited[0] + "-";             //Para Zona EEUU
         } else {
-        aux += "23:59";
+            aux += splited[0] + "-";
+        }
+        if (Integer.parseInt(splited[1]) < 10) {
+            aux += "0" + splited[1] + " ";
+        } else {
+            aux += splited[1] + " ";
+        }
+        /**/
+        /**
+         * /
+         * for (int i = splited.length - 1; i > 0; i--) { aux += splited[i] +
+         * "-"; } aux += splited[0] + " ";
+        /*
+         */
+        if (night == false) {
+            aux += "00:00";
+        } else {
+            aux += "23:59";
         }
         return aux;
     }
