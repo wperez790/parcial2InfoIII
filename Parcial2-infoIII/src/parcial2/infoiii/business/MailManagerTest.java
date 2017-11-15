@@ -50,6 +50,7 @@ public class MailManagerTest {
                                 ret.add(mail);
                             }
                             mail = new Email();
+                            mail.setId(Context.id++);
                             mail.setContent("");
                             break;
                         case "date":

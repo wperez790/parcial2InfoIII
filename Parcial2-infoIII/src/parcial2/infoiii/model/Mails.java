@@ -19,17 +19,28 @@ public class Mails {
     private StringProperty from;
     private StringProperty to;
     private StringProperty date;
+    private StringProperty id;
     private ObjectProperty<Email> email;
     
     public Mails(){
-        this(null,null,null,null);
+        this(null,null,null,null,null);
     }
     
-    public Mails(String from, String to, String date, Email email ){
+    public Mails(String from, String to, String date, Email email , Long id){
+        String iD = id.toString();
         this.from = new SimpleStringProperty(from);
         this.to = new SimpleStringProperty(to);
         this.date = new SimpleStringProperty(date);
         this.email = new SimpleObjectProperty<Email>(email);
+        this.id = new SimpleStringProperty(iD);
+    }
+
+    public StringProperty getId() {
+        return id;
+    }
+
+    public void setId(StringProperty id) {
+        this.id = id;
     }
 
     public StringProperty getFrom() {

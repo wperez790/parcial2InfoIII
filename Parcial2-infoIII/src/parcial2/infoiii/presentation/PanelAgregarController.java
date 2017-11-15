@@ -49,7 +49,7 @@ public class PanelAgregarController implements Initializable {
 
     @FXML
     private void btn2Action(ActionEvent event) throws Exception {
-        Context.op = "mails-2.txt";
+        Context.op = "mails-2.txt";  //Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
         
             
@@ -57,30 +57,30 @@ public class PanelAgregarController implements Initializable {
 
     @FXML
     private void btn20Action(ActionEvent event) throws Exception {
-        Context.op = "mails-20.txt";
+        Context.op = "mails-20.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
         
     }
 
     @FXML
     private void btn100Action(ActionEvent event) throws Exception {
-        Context.op = "mails-100.txt";
+        Context.op = "mails-100.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
         
     }
 
     @FXML
     private void btn1000Action(ActionEvent event) throws Exception {
-        Context.op = "mails-1000.txt";
+        Context.op = "mails-1000.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
     }
 
     @FXML
     private void btn3001Action(ActionEvent event) throws Exception {
-        Context.op = "mails-3001.txt";
+        Context.op = "mails-3001.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
     }
-
+/*Vuelve atras al menu principal cargando el fxml en el contenedor Principal*/
     @FXML
     private void btnBackAction(ActionEvent event) {
         try {

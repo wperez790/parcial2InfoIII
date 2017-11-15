@@ -44,7 +44,7 @@ public class Lista<T> {
             return;
         }
 
-        while (aux.getNext()!= null) {
+        while (aux.getNext() != null) {
 
             aux = aux.getNext();
         }
@@ -53,12 +53,13 @@ public class Lista<T> {
         aux.setNext(nuevo);
         tamanio++;
     }
+
     void insertarContenedor(ContenedorMail dat) {
-        
+
         NodeListPos aux = inicioLP;
 
-        if (inicioLP== null) {
-            NodeListPos nuevo = new NodeListPos( dat, inicioLP);
+        if (inicioLP == null) {
+            NodeListPos nuevo = new NodeListPos(dat, inicioLP);
             tamanio = 1;
             inicioLP = nuevo;
             return;
@@ -72,8 +73,7 @@ public class Lista<T> {
         NodeListPos nuevo = new NodeListPos(dat, aux.getNext());
         aux.setNext(nuevo);
         tamanio++;
-    
-        
+
     }
 
     public Email getDato(int pos) throws Exception {
@@ -122,22 +122,45 @@ public class Lista<T> {
         aux.setNext((aux.getNext().getNext()));
     }
 
-    public Lista concatenar(Lista lista1, Lista lista2) {
+    public void delete(long id) throws Exception {
+        NodeList aux = inicio;
+
+        if (aux.getDato().getId() == id) {
+            inicio = aux.getNext();
+        }
+        while (aux.getNext().getDato().getId() != id) {
+            if (aux.getNext().getNext() != null) {
+                aux = aux.getNext();
+            } else {
+                throw new Exception("No se encontro");
+            }
+        }
+        if (aux.getNext().getNext() == null) {
+            aux.setNext(null);
+            tamanio--;
+        } else {
+            aux.setNext(aux.getNext().getNext());
+            tamanio--;
+        }
         
-        if(lista1.inicio == null){
+
+    }
+
+    public Lista concatenar(Lista lista1, Lista lista2) {
+
+        if (lista1.inicio == null) {
             lista1 = lista2;
             lista1.setTamanio(lista2.getTamanio());
             return lista1;
-        }
-        else{
-           NodeList aux = lista1.getInicio();
-           while (aux.getNext() != null) {
+        } else {
+            NodeList aux = lista1.getInicio();
+            while (aux.getNext() != null) {
                 aux = aux.getNext();
             }
             aux.setNext(lista2.getInicio());
             lista1.setTamanio(lista1.getTamanio() + lista2.getTamanio());
-            return lista1;  
-        }       
+            return lista1;
+        }
     }
 
     public void mostrarLista(Lista lista) {
@@ -187,5 +210,4 @@ public class Lista<T> {
         return lista1;
     }
 
-    
 }

@@ -9,6 +9,7 @@ public class NodeTree {
     private NodeTree left;
     private NodeTree right;
 
+    /*Constructor con Email*/
     public NodeTree(Email dat) throws Exception {
         this.height = 0;
         this.dat = new Lista();
@@ -17,6 +18,8 @@ public class NodeTree {
         this.right = null;
     }
 
+    /**/
+ /*Constructor con ContenedorMail*/
     public NodeTree(ContenedorMail dat) throws Exception {
         this.height = 0;
         this.dat = new Lista();
@@ -25,6 +28,8 @@ public class NodeTree {
         this.right = null;
     }
 
+    /**/
+ /*Constructor con Nodo*/
     public NodeTree(NodeTree node) {
         this.height = 0;
         this.dat = node.getDat();
@@ -32,6 +37,7 @@ public class NodeTree {
         this.right = node.getRight();
     }
 
+    /**/
     public int getHeight() {
         return height;
     }
@@ -102,6 +108,29 @@ public class NodeTree {
         k2.height = height(k2);
 
         return k1;
+    }
+
+    public NodeTree delete(long id) {
+        /*
+        int comp = dat.compareTo(d);
+        if(comp < 0){
+        if(der != null)
+        der = der.eliminar(d);
+        else
+        throw new Exception("No se encontro el dato");
+        }else if(comp > 0){
+        if(izq != null)
+        izq = izq.eliminar(d);
+        else
+        throw new Exception("No se encontro el dato");
+        }else{
+        if(der == null)
+        return izq;
+        der.insertar(izq);
+        return der;
+        }
+        return this;   */
+        return null;
     }
 
     public NodeTree insertByFrom(NodeTree aux, Email m) throws Exception {
@@ -248,21 +277,21 @@ public class NodeTree {
     public void getSortedByDate(String desde, String hasta) {
         String dateLeft = "";
         String dateRight = "";
-        NodeTree aux= this;
-        if(aux.left !=null){
-            dateLeft=aux.left.dat.getInicio().getDato().getDate();
-            if( desde.compareTo(dateLeft) <= 0 && aux.left!= null && hasta.compareTo(dateLeft) > 0){
-            aux.left.getSortedByDate(desde, hasta);
+        NodeTree aux = this;
+        if (aux.left != null) {
+            dateLeft = aux.left.dat.getInicio().getDato().getDate();
+            if (desde.compareTo(dateLeft) <= 0 && aux.left != null && hasta.compareTo(dateLeft) > 0) {
+                aux.left.getSortedByDate(desde, hasta);
             }
-        }  
+        }
         Context.list = Context.list.concatenar(Context.list, dat);
-        if(aux.right!=null){
+        if (aux.right != null) {
             dateRight = aux.right.dat.getInicio().getDato().getDate();
-            if( desde.compareTo(dateRight) < 0 && aux.right!= null && hasta.compareTo(dateRight) >= 0){
-            aux.right.getSortedByDate(desde, hasta);
+            if (desde.compareTo(dateRight) < 0 && aux.right != null && hasta.compareTo(dateRight) >= 0) {
+                aux.right.getSortedByDate(desde, hasta);
             }
-        }               
-        
+        }
+
         /*NodeTree aux= this;
         String nodoDate = aux.dat.getInicio().getDato().getDate();
         //Si desde es null ubico el primer nodo
@@ -282,9 +311,9 @@ public class NodeTree {
         } else {
         aux.getSortedByDateTo(hasta); //Muestro las listas hasta la fecha final (hasta)
         }*/
-        }
-        
-       /* public void getSortedByDateTo(String hasta) {
+    }
+
+    /* public void getSortedByDateTo(String hasta) {
         
         if (left != null || dat.getInicio().getDato().getDate().compareTo(hasta) > 0) {
         left.getSortedByDateTo(hasta);
@@ -294,16 +323,16 @@ public class NodeTree {
         right.getSortedByDateTo(hasta);
         }
         }*/
-    
-    public void getSortedByDateTo(String hasta){
+    public void getSortedByDateTo(String hasta) {
         NodeTree aux = getMin();
         Context.avlTreeDate.getRoot().getSortedByDate(aux.getDat().getInicio().getDato().getDate(), hasta);
-        
+
     }
-    public void getSortedByDateFrom(String desde){
+
+    public void getSortedByDateFrom(String desde) {
         NodeTree aux = getMax();
-        
-        Context.avlTreeDate.getRoot().getSortedByDate(desde,aux.getDat().getInicio().getDato().getDate());
+
+        Context.avlTreeDate.getRoot().getSortedByDate(desde, aux.getDat().getInicio().getDato().getDate());
     }
 
     public Lista getByFrom(String from) throws Exception {
@@ -373,7 +402,7 @@ public class NodeTree {
     private NodeTree getMin() {
         NodeTree aux = this;
         while (aux.left != null) {
-            aux= aux.left;
+            aux = aux.left;
         }
         return aux;
     }
@@ -381,10 +410,108 @@ public class NodeTree {
     private NodeTree getMax() {
         NodeTree aux = this;
         while (aux.right != null) {
-            aux= aux.right;
+            aux = aux.right;
         }
         return aux;
     }
+
+    public NodeTree deleteByDate(String date) throws Exception {
+        if (date.compareTo(dat.getInicio().getDato().getDate()) > 0) {
+            if (right != null) {
+                right = right.deleteByDate(date); //me muevo por la rama derecha para buscar los mayores al root
+            } else {
+                throw new Exception("No se encontro el dato");
+            }
+        } else if (date.compareTo(dat.getInicio().getDato().getDate()) < 0) {
+            if (left != null) {
+                left = left.deleteByDate(date);   //me muevo por la rama izquierda para buscar los menores al root
+            } else {
+                throw new Exception("No se encontro el dato");
+            }
+        } else {
+            if (right == null) {
+                return left;
+            }
+            right.insertByDate(left, Context.email);
+            return right;
+        }
+        return this;
+    }
+
+    public NodeTree deleteByFrom(String from) throws Exception {
+        if (from.compareTo(dat.getInicio().getDato().getFrom()) > 0) {
+            if (right != null) {
+                right = right.deleteByFrom(from); //me muevo por la rama derecha para buscar los mayores al root
+            } else {
+                throw new Exception("No se encontro el dato");
+            }
+        } else if (from.compareTo(dat.getInicio().getDato().getFrom()) < 0) {
+            if (left != null) {
+                left = left.deleteByFrom(from);   //me muevo por la rama izquierda para buscar los menores al root
+            } 
+        } else if(from.compareTo(dat.getInicio().getDato().getFrom()) == 0) {
+            /*Si son iguales los From me muevo a través de la lista y si la lista tiene un elemento hago el intercambio de nodos*/
+            NodeList aux = this.dat.getInicio();    
+            if (aux.getNext() == null) { //Pregunta si tiene un solo elemento e intercambio de ser cierto.
+                if (right == null) {
+                    return left;
+                }
+                right.insertByFrom(left, Context.email);
+                return right;
+            } else {                    //Si no tiene un solo elemento debo recorrerla hasta encontrar el e-mail
+               this.dat.delete(Context.id);
+            }
+        }
+        else {
+                throw new Exception("No se encontro el dato");
+            }
+        return this;
+    }
+
+    /*   private NodeTree insertar(NodeTree aux) throws Exception {
+    
+    if (aux == null) {
+    return aux;
+    }
+    
+    if (aux.dat.getId() < this.dat.getId()) {
+    aux.left = insertar(aux.left);
+    } else if (aux.dat.getId() > this.dat.getId()) {
+    aux.right = insertar(aux.right);
+    } else {
+    throw new Exception("Dato duplicado");
+    }
+    
+    aux.height = height(aux);
+    
+    int balance = balance(aux);
+    
+    //Rotación simple izquierda (RSI)
+    if (balance > 1 && balance(aux.right) > 0) {
+    return leftRotate(aux);
+    }
+    
+    //Rotación simple derecha (RSD)
+    if (balance < -1 && balance(aux.left) < 0) {
+    return rightRotate(aux);
+    }
+    
+    //Rotación doble izquierda (RDI)
+    if (balance < -1 && balance(aux.left) > 0) {
+    aux.left = leftRotate(aux.left);
+    return rightRotate(aux);
+    }
+    
+    //Rotación doble derecha (RDD)
+    if (balance > 1 && balance(aux.left) < 0) {
+    aux.right = rightRotate(aux.right);
+    return leftRotate(aux);
+    }
+    
+    return aux; //Sin replicados
+    
+    }*/
+
 
 }
 

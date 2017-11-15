@@ -50,7 +50,7 @@ private static Stage stage = new Stage();
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // Inicializo lo que debe contener cada parte del e-mail con la información del email del context.
         textAreaAsunto.setText(Context.email.getSubject());
         labelDestinatario.setText(Context.email.getTo());
         labelRemitente.setText(Context.email.getFrom());
@@ -71,7 +71,7 @@ private static Stage stage = new Stage();
 
         }
     }
-
+/*Cierra la pestaña/stage abierta/o*/
     @FXML
     private void btnCloseAction(ActionEvent event) {
         stage.close();

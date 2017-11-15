@@ -54,7 +54,7 @@ public class MenuController implements Initializable {
         }
 
     }
-
+/*Si preciona Opcion agregar Carga el fxml del PanelAgregar en el contenedor Principal*/
     @FXML
     private void btnAgregarAction(ActionEvent event) {
         try {
@@ -67,11 +67,19 @@ public class MenuController implements Initializable {
         }
         
     }
-
+/*Si preciona Opcion Eliminar Carga el fxml del PanelEliminar en el contenedor Principal*/
     @FXML
     private void btnEliminarAction(ActionEvent event) {
-    }
+        try {
 
+            Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/PanelEliminar.fxml"));
+            Context.splitPane.getItems().set(0, root);
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+    }
+/*Si preciona Opcion Buscar Carga el fxml del PanelBuscar en el contenedor Principal*/
     @FXML
     private void btnBuscarAction(ActionEvent event) {
         try {
@@ -83,7 +91,7 @@ public class MenuController implements Initializable {
 
         }
     }
-
+/*Si preciona Opcion Ordenar Carga el fxml del PanelOrdenar en el contenedor Principal*/
     @FXML
     private void btnOrdenarAction(ActionEvent event) {
         

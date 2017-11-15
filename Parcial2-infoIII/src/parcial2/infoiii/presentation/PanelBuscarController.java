@@ -57,7 +57,6 @@ public class PanelBuscarController implements Initializable {
     private JFXButton btnBack;
 
     //AUXILIARES
-    MailManager mailManagerBO = new MailManager();
     ObservableList<Mails> mailsData = FXCollections.observableArrayList();
     //
     @FXML
@@ -70,20 +69,22 @@ public class PanelBuscarController implements Initializable {
     private TableColumn<Mails, String> dateColumn;
     @FXML
     private TableColumn<Mails, String> idColumn;
+    @FXML
+    private JFXButton btnEliminar;
 
     //
     /**
-     * Initializes the controller class.
+     * Initializes the controller class. Cargo los datos de cada columna
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         fromColumn.setCellValueFactory(cellData -> cellData.getValue().getFrom());
         toColumn.setCellValueFactory(cellData -> cellData.getValue().getTo());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().getDate());
-        /*        idColumn.setCellValueFactory(cellData -> cellData.getValue().getId());*/
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getId());
 
     }
-
+/*Al presionarse el boton abre el mail que corresponde*/
     @FXML
     private void btnVerAction(ActionEvent event) {
         
@@ -91,7 +92,7 @@ public class PanelBuscarController implements Initializable {
         Context.abrirEmail();
       
     }
-
+/*Vuelve atras al menu principal cargando el fxml en el contenedor Principal*/
     @FXML
     private void btnBackAction(ActionEvent event) {
 
@@ -107,6 +108,7 @@ public class PanelBuscarController implements Initializable {
 
     @FXML
     private void btnBuscarAction(ActionEvent event) throws Exception {
+        MailManager mailManagerBO = new MailManager();
         Email e1[] = null;    //Manejo por Remitente
         Email e2[] = null;   //Manejo por Palabras
         Email e3[] = null;  //Manejo por Fechas
@@ -120,13 +122,13 @@ public class PanelBuscarController implements Initializable {
         if (!textFieldRemitente.getText().isEmpty()) { //Si el campo Remitente no esta vacio realizo la busqueda
             e1 = mailManagerBO.getByFrom(textFieldRemitente.getText());
             for (int i = 0; i < e1.length; i++) {
-                mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i]));   //Agrego datos que necesito al objeto ObservableList de la tabla
+                mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i], e1[i].getId()));   //Agrego datos que necesito al objeto ObservableList de la tabla
             }
         }
         if (!textFieldPalabra.getText().isEmpty()) {   //Si el campo Palabra no esta vacio Realizo la busqueda
             e2 = mailManagerBO.getByQuery(textFieldPalabra.getText());
             for (int i = 0; i < e2.length; i++) {
-                mailsData.add(new Mails(e2[i].getFrom(), e2[i].getTo(), e2[i].getDate(), e2[i]));
+                mailsData.add(new Mails(e2[i].getFrom(), e2[i].getTo(), e2[i].getDate(), e2[i], e2[i].getId()));
             }
         }
         /*Si Desde y Hasta estan completados*/
@@ -135,7 +137,7 @@ public class PanelBuscarController implements Initializable {
              e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde,false), mailManagerBO.splitDate(hasta,true));
              
              for (int i = 0; i < e3.length; i++) {
-                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i], e3[i].getId()));
             }
             
         }
@@ -145,7 +147,7 @@ public class PanelBuscarController implements Initializable {
              e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(desde,false), null);
              
              for (int i = 0; i < e3.length; i++) {
-                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i], e3[i].getId()));
             }
         }
         /**/
@@ -154,7 +156,7 @@ public class PanelBuscarController implements Initializable {
             e3 = mailManagerBO.getSortedByDate(null , mailManagerBO.splitDate(hasta,true));
             
             for (int i = 0; i < e3.length; i++) {
-                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i], e3[i].getId()));
             }
         }
         /**/
@@ -162,7 +164,7 @@ public class PanelBuscarController implements Initializable {
         else if(!datePickerFecha.getEditor().getText().isEmpty()){
             e3 = mailManagerBO.getSortedByDate(mailManagerBO.splitDate(fecha,false),mailManagerBO.splitDate(fecha, true));
               for (int i = 0; i < e3.length; i++) {
-                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i]));
+                mailsData.add(new Mails(e3[i].getFrom(), e3[i].getTo(), e3[i].getDate(), e3[i], e3[i].getId()));
             }
             
         }
@@ -172,6 +174,14 @@ public class PanelBuscarController implements Initializable {
         /*        for(int i = 0; i<e1.length; i++){
         
         }*/
+    }
+/*Elimino el mail seleccionado*/
+    @FXML
+    private void btnEliminarAction(ActionEvent event) throws Exception {
+        MailManager mailManagerBO = new MailManager();
+        Context.email = tableMailsSearch.getSelectionModel().getSelectedItem().getEmail().getValue();
+        Context.id= Context.email.getId();
+        mailManagerBO.deleteMail(Context.email.getId());
     }
 
 }

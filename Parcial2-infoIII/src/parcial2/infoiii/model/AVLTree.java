@@ -36,10 +36,17 @@ public class AVLTree<T extends Comparable> {
         }
     }
 
+    /*    public Email delete(long id) {
+    if (root == null) {
+    throw new Exception("Árbol Vacio");
+    }
+    else
+    root = root.delete(id);
+    }*/
     public void getSorted() throws Exception {
         if (root != null) {
-             root.getSorted();
-            
+            root.getSorted();
+
         } else {
             throw new Exception("Vacio");
         }
@@ -49,8 +56,8 @@ public class AVLTree<T extends Comparable> {
         if (root != null) {
             root.getSortedByDate(desde, hasta);
         } else {
-            throw new Exception("Árbol vacio") ;
-                    /*        if (root != null && root.getDat().getInicio().getDato().getDate().compareTo(desde) != 0) {
+            throw new Exception("Árbol vacio");
+            /*        if (root != null && root.getDat().getInicio().getDato().getDate().compareTo(desde) != 0) {
         //lista  //nodoIni //Email    //fecha
         root.getSortedByDate(desde, hasta, list);
         return list;
@@ -60,7 +67,7 @@ public class AVLTree<T extends Comparable> {
         } else {
         return null;
         }*/
-    
+
         }
     }
 
@@ -83,20 +90,35 @@ public class AVLTree<T extends Comparable> {
         if(root != null)
             root.inOrder();
     }*/
-
     public void getSortedByDateTo(String hasta) throws Exception {
         if (root != null) {
-           root.getSortedByDateTo(hasta);
-        }
-        else
+            root.getSortedByDateTo(hasta);
+        } else {
             throw new Exception();
+        }
     }
 
     public void getSortedByDateFrom(String desde) throws Exception {
         if (root != null) {
-           root.getSortedByDateFrom(desde);
-        }
-        else
+            root.getSortedByDateFrom(desde);
+        } else {
             throw new Exception();
+        }
+    }
+
+    public void deleteByDate(String date) throws Exception {
+        if (root == null) {
+            throw new Exception("Árbol Vacio");
+        } else {
+            root = root.deleteByDate(date);
+        }
+    }
+
+    public void deleteByFrom(String from) throws Exception {
+        if (root == null) {
+            throw new Exception("Árbol Vacio");
+        } else {
+            root = root.deleteByFrom(from);
+        }
     }
 }

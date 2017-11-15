@@ -15,12 +15,11 @@ public class MailManager {
      * @param m mail a agregar
      */
     public void addMail(Email m) throws Exception {
-
-        Context.avlTreeFrom.insertByFrom(m);
-        Context.avlTreeDate.insertByDate(m);
-        Context.hashAvlTree.splitString(m.getSubject(), m, true);
-        Context.hashAvlTree.splitString(m.getContent(), m, false);
-
+        Context.avlTreeID.insertByID(m);                            //Inserta mails en un AVL ordenado por ID
+        Context.avlTreeFrom.insertByFrom(m);                        //Inserta mails en un AVL ordenado por Remitente
+        Context.avlTreeDate.insertByDate(m);                        //Inserta mails en un AVL ordenado por Fecha
+        Context.hashAvlTree.splitString(m.getSubject(), m, true);   //Separa las palabras del subject y las agrega en la Tabla Hash de AVLs
+        Context.hashAvlTree.splitString(m.getContent(), m, false);  //Separa las palabras del content y las agrega en la Tabla Hash de AVLs
     }
 
     /**
@@ -28,8 +27,11 @@ public class MailManager {
      *
      * @param id identificador del mail a borrar
      */
-    public void deleteMail(long id) {
-
+    public void deleteMail(long id) throws Exception {
+        Email e= Context.avlTreeID.delete(id);
+        Context.avlTreeDate.deleteByDate(e.getDate());
+        Context.avlTreeFrom.deleteByFrom(e.getFrom());
+       // Context.hashAvlTree.delete(e.getId(),e);
     }
 
     /**
