@@ -74,7 +74,7 @@ public class PanelOrdenarController implements Initializable {
         fromColumn.setCellValueFactory(cellData -> cellData.getValue().getFrom());
         toColumn.setCellValueFactory(cellData -> cellData.getValue().getTo());
         dateColumn.setCellValueFactory(cellData -> cellData.getValue().getDate());
-        /*        idColumn.setCellValueFactory(cellData -> cellData.getValue().getId());*/
+        idColumn.setCellValueFactory(cellData -> cellData.getValue().getId());
     }
 
     @FXML

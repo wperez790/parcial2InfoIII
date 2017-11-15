@@ -165,20 +165,24 @@ public class MailManager {
     public String splitDate(String notSplited, boolean night) {
         String[] splited = notSplited.split("/");
         String aux = "";
-        /*aux += splited[2]+"-";
+        /** / 
+        aux += splited[2]+"-";
         if(Integer.parseInt(splited[0])<10)    //DatePicker al mes lo pone sin 0, esto corrije el problema
-        aux += "0"+splited[0]+"-";
+        aux += "0"+splited[0]+"-";             //Para Zona EEUU
         else
         aux += splited[0]+"-";
-        aux += splited[1];*/
+        aux += splited[1]+ " ";
+        /**/
+        /**/
         for (int i = splited.length - 1; i > 0; i--) {
-            aux += splited[i] + "-";
+        aux += splited[i] + "-";
         }
         aux += splited[0] + " ";
+        /**/
         if (night == false) {
-            aux += "00:00";
+        aux += "00:00";
         } else {
-            aux += "23:59";
+        aux += "23:59";
         }
         return aux;
     }
