@@ -127,22 +127,23 @@ public class Lista<T> {
 
         if (aux.getDato().getId() == id) {
             inicio = aux.getNext();
-        }
-        while (aux.getNext().getDato().getId() != id) {
-            if (aux.getNext().getNext() != null) {
-                aux = aux.getNext();
-            } else {
-                throw new Exception("No se encontro");
-            }
-        }
-        if (aux.getNext().getNext() == null) {
-            aux.setNext(null);
             tamanio--;
         } else {
-            aux.setNext(aux.getNext().getNext());
-            tamanio--;
+            while (aux.getNext().getDato().getId() != id) {
+                if (aux.getNext().getNext() != null) {
+                    aux = aux.getNext();
+                } else {
+                    throw new Exception("No se encontro");
+                }
+            }
+            if (aux.getNext().getNext() == null) {
+                aux.setNext(null);
+                tamanio--;
+            } else {
+                aux.setNext(aux.getNext().getNext());
+                tamanio--;
+            }
         }
-        
 
     }
 
