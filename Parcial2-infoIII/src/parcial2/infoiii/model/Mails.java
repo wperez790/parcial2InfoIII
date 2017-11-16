@@ -15,18 +15,18 @@ import javafx.beans.property.StringProperty;
  * @author walt
  */
 public class Mails {
-    
+
     private StringProperty from;
     private StringProperty to;
     private StringProperty date;
     private StringProperty id;
     private ObjectProperty<Email> email;
-    
-    public Mails(){
-        this(null,null,null,null,null);
+
+    public Mails() {
+        this(null, null, null, null, null);
     }
-    
-    public Mails(String from, String to, String date, Email email , Long id){
+
+    public Mails(String from, String to, String date, Email email, Long id) {
         String iD = id.toString();
         this.from = new SimpleStringProperty(from);
         this.to = new SimpleStringProperty(to);
@@ -74,5 +74,5 @@ public class Mails {
     public void setEmail(ObjectProperty<Email> email) {
         this.email = email;
     }
-    
+
 }

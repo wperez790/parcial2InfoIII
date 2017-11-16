@@ -164,7 +164,7 @@ public class PanelOrdenarController implements Initializable {
         tableOrdenar.setItems(mailsData);
         e1 = mailManagerBO.getSortedByDate();
         for (int i = 0; i < e1.length; i++) { //Cargo en la observable list(necesaria para mostrar datos) los campos que necesito
-            mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i],e1[i].getId()));
+            mailsData.add(new Mails(e1[i].getFrom(), e1[i].getTo(), e1[i].getDate(), e1[i], e1[i].getId()));
         }
         tableOrdenar.setItems(mailsData);
     }

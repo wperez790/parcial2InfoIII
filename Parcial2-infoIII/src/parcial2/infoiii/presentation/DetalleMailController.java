@@ -24,13 +24,10 @@ import parcial2.infoiii.Context;
  *
  * @author walt
  */
-
-
 public class DetalleMailController implements Initializable {
 
-    
 //AUX
-private static Stage stage = new Stage();
+    private static Stage stage = new Stage();
     @FXML
     private JFXTextArea textAreaContenido;
     private Label labelAsunto;
@@ -45,6 +42,7 @@ private static Stage stage = new Stage();
     @FXML
     private JFXTextArea textAreaAsunto;
 ///
+
     /**
      * Initializes the controller class.
      */
@@ -56,10 +54,10 @@ private static Stage stage = new Stage();
         labelRemitente.setText(Context.email.getFrom());
         labelFecha.setText(Context.email.getDate());
         textAreaContenido.setText(Context.email.getContent());
-    }    
+    }
 
     public void init() {
-       try {
+        try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/DetalleMail.fxml"));
             Scene scene = new Scene(root);
@@ -71,10 +69,11 @@ private static Stage stage = new Stage();
 
         }
     }
-/*Cierra la pestaña/stage abierta/o*/
+
+    /*Cierra la pestaña/stage abierta/o*/
     @FXML
     private void btnCloseAction(ActionEvent event) {
         stage.close();
     }
-    
+
 }

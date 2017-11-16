@@ -33,7 +33,7 @@ public class ContenedorPrincipalController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Context.splitPane = splitPane;   //Asigno al splitPane del Context que va a ser nuestro Contenedor principal este splitpane
-    
+
     }
 
     public void init() {

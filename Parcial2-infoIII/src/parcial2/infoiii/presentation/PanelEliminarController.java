@@ -33,6 +33,7 @@ public class PanelEliminarController implements Initializable {
 
     //AUX
     MailManager mailManagerBO = new MailManager();
+
     //
     /**
      * Initializes the controller class.
@@ -40,19 +41,20 @@ public class PanelEliminarController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
-/*Elimina el e-mail por el ID introducido*/
+    }
+
+    /*Elimina el e-mail por el ID introducido*/
     @FXML
     private void btnEliminarAction(ActionEvent event) throws Exception {
-        
-        long id=  Long.parseLong(textFieldID.getText()); 
-        Context.id= id;
+
+        long id = Long.parseLong(textFieldID.getText());
+        Context.id = id;
         mailManagerBO.deleteMail(id);
     }
 
     @FXML
     private void btnBackAction(ActionEvent event) {
-        
+
         try {
 
             Parent root = FXMLLoader.load(getClass().getResource("/parcial2/infoiii/presentation/Menu.fxml"));
@@ -62,5 +64,5 @@ public class PanelEliminarController implements Initializable {
 
         }
     }
-    
+
 }

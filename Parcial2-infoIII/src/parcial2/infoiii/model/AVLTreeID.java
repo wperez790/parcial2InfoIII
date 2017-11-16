@@ -12,7 +12,8 @@ import parcial2.infoiii.Context;
  * @author walt
  */
 public class AVLTreeID {
-      private NodeTreeID root;
+
+    private NodeTreeID root;
 
     public NodeTreeID getRoot() {
         return root;
@@ -21,7 +22,7 @@ public class AVLTreeID {
     public AVLTreeID() {
         this.root = null;
     }
-    
+
     public void insertByID(Email m) throws Exception {
         if (root == null) {
             root = new NodeTreeID(m);
@@ -29,14 +30,14 @@ public class AVLTreeID {
             root = root.insertByID(root, m);
         }
     }
-    
+
     public Email delete(long id) throws Exception {
         if (root == null) {
             throw new Exception("Árbol Vacio");
-        }
-        else
+        } else {
             root = root.delete(id);
+        }
         return Context.email;
     }
-    
+
 }

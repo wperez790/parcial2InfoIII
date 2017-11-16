@@ -38,35 +38,34 @@ public class PanelAgregarController implements Initializable {
     MailManagerTest mmt = new MailManagerTest();
     @FXML
     private JFXButton btnBack;
-    
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-  
-    }    
+
+    }
 
     @FXML
     private void btn2Action(ActionEvent event) throws Exception {
         Context.op = "mails-2.txt";  //Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
-        
-            
+
     }
 
     @FXML
     private void btn20Action(ActionEvent event) throws Exception {
         Context.op = "mails-20.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
-        
+
     }
 
     @FXML
     private void btn100Action(ActionEvent event) throws Exception {
         Context.op = "mails-100.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
-        
+
     }
 
     @FXML
@@ -80,7 +79,8 @@ public class PanelAgregarController implements Initializable {
         Context.op = "mails-3001.txt";//Guarda el nombre del archivo que se desea para luego cargar en ese path
         mmt.addMail();
     }
-/*Vuelve atras al menu principal cargando el fxml en el contenedor Principal*/
+
+    /*Vuelve atras al menu principal cargando el fxml en el contenedor Principal*/
     @FXML
     private void btnBackAction(ActionEvent event) {
         try {
@@ -92,5 +92,5 @@ public class PanelAgregarController implements Initializable {
 
         }
     }
-    
+
 }

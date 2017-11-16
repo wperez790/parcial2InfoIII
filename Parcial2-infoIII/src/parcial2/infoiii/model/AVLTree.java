@@ -36,13 +36,6 @@ public class AVLTree<T extends Comparable> {
         }
     }
 
-    /*    public Email delete(long id) {
-    if (root == null) {
-    throw new Exception("Árbol Vacio");
-    }
-    else
-    root = root.delete(id);
-    }*/
     public void getSorted() throws Exception {
         if (root != null) {
             root.getSorted();
@@ -57,16 +50,6 @@ public class AVLTree<T extends Comparable> {
             root.getSortedByDate(desde, hasta);
         } else {
             throw new Exception("Árbol vacio");
-            /*        if (root != null && root.getDat().getInicio().getDato().getDate().compareTo(desde) != 0) {
-        //lista  //nodoIni //Email    //fecha
-        root.getSortedByDate(desde, hasta, list);
-        return list;
-        } else if (root != null) {
-        root.getSortedByDateTo(hasta, list);
-        return list;
-        } else {
-        return null;
-        }*/
 
         }
     }
@@ -86,10 +69,6 @@ public class AVLTree<T extends Comparable> {
 
     }
 
-    /*public void inOrder (){
-        if(root != null)
-            root.inOrder();
-    }*/
     public void getSortedByDateTo(String hasta) throws Exception {
         if (root != null) {
             root.getSortedByDateTo(hasta);

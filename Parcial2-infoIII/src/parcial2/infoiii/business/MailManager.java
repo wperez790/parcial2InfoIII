@@ -45,11 +45,6 @@ public class MailManager {
         Email email[] = new Email[Context.list.getTamanio()];
         NodeList aux = Context.list.getInicio();
         int i = 0;
-        /*      while (aux != null) {
-        email[i] = aux.getDato();
-        aux = aux.getNext();
-        i++;
-        }*/
         for (i = 0; i < Context.list.getTamanio(); i++) {
             email[i] = aux.getDato();
             aux = aux.getNext();
@@ -182,8 +177,7 @@ public class MailManager {
         /**
          * /
          * for (int i = splited.length - 1; i > 0; i--) { aux += splited[i] +
-         * "-"; } aux += splited[0] + " ";
-        /*
+         * "-"; } aux += splited[0] + " "; /*
          */
         if (night == false) {
             aux += "00:00";

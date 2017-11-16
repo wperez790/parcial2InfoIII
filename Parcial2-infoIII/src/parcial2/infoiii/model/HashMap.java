@@ -42,7 +42,7 @@ public class HashMap <K,T extends Comparable>{
         return false;
     }
     
-    public void splitString(String query, Email m,Boolean sub) throws Exception{
+    public void splitString(String query, Email m, Boolean sub) throws Exception{
         
         String[] splited = query.split("\\s+");
         for(int i = 0; i < splited.length; i++){
